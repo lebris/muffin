@@ -2,9 +2,7 @@
 
 use Mdd\QueryBuilder\PartBuilders;
 
-require 'PartBuilderTestCase.php';
-
-class FromTest extends PartBuilderTestCase
+class FromTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerTestFrom
@@ -13,7 +11,7 @@ class FromTest extends PartBuilderTestCase
     {
         $qb = new PartBuilders\From($tableName);
 
-        $this->assertQueryIs($qb, $expected);
+        $this->assertSame($qb->toString(), $expected);
     }
 
     public function providerTestFrom()
