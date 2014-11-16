@@ -10,15 +10,15 @@ class Select implements Query
 {
     private
         $conditions,
-        $columns,
+        $select,
         $from;
 
     public function __construct($columns = null)
     {
-        $this->columns = array();
+        $this->select = new PartBuilders\Select();
         $this->conditions = array();
 
-        $this->addColumns($columns);
+        $this->select->select($columns);
     }
 
     public function toString()
@@ -39,7 +39,7 @@ class Select implements Query
 
     public function select($columns)
     {
-        $this->addColumns($columns);
+        $this->select->select($columns);
 
         return $this;
     }
@@ -53,10 +53,7 @@ class Select implements Query
 
     private function buildSelect()
     {
-        return sprintf(
-            'SELECT %s',
-            implode(', ', $this->columns)
-        );
+        return $this->select->toString();
     }
 
     private function buildFrom()
@@ -67,21 +64,6 @@ class Select implements Query
     private function buildWhere()
     {
         return $this->from->toString();
-    }
-
-    private function addColumns($columns)
-    {
-        $columns = array_filter($this->ensureIsArray($columns));
-
-        foreach($columns as $column)
-        {
-            if(! is_string($column))
-            {
-                throw new \InvalidArgumentException('Column name must be a string.');
-            }
-        }
-
-        $this->columns = array_unique(array_merge($this->columns, $columns));
     }
 
     private function addCondition(Condition $condition)
