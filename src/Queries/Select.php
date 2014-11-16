@@ -70,14 +70,4 @@ class Select implements Query
     {
         $this->conditions[] = $condition;
     }
-
-    private function ensureIsArray($select)
-    {
-        if(! is_array($select))
-        {
-            $select = array($select);
-        }
-
-        return $select;
-    }
 }
