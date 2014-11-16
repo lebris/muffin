@@ -3,12 +3,9 @@
 namespace Mdd\QueryBuilder\Types;
 
 use Mdd\QueryBuilder\Type;
-use Mdd\QueryBuilder\Traits\EscaperAware;
 
 abstract class AbstractType implements Type
 {
-    use EscaperAware;
-
     private
         $value;
 

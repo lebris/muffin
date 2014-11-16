@@ -19,7 +19,6 @@ class IntTest extends PHPUnit_Framework_TestCase
     public function testFormatInt($expected, $value)
     {
         $type = new Types\Int($value);
-        $type->setEscaper($this->escaper);
 
         $this->assertSame($expected, $type->getValue());
     }

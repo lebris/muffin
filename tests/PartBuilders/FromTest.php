@@ -31,7 +31,7 @@ class FromTest extends PHPUnit_Framework_TestCase
     {
         $qb = new PartBuilders\From($tableName);
 
-        $qb->from($tableName);
+        $qb->toString($tableName);
     }
 
     public function providerTestInvalidTableName()

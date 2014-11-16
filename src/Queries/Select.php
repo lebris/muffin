@@ -4,16 +4,19 @@ namespace Mdd\QueryBuilder\Queries;
 
 use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\PartBuilders;
+use Mdd\QueryBuilder\Condition;
 
 class Select implements Query
 {
     private
+        $conditions,
         $columns,
         $from;
 
     public function __construct($columns = null)
     {
         $this->columns = array();
+        $this->conditions = array();
 
         $this->addColumns($columns);
     }
@@ -41,6 +44,13 @@ class Select implements Query
         return $this;
     }
 
+    public function where(Condition $condition)
+    {
+        $this->addCondition($condition);
+
+        return $this;
+    }
+
     private function buildSelect()
     {
         return sprintf(
@@ -54,9 +64,14 @@ class Select implements Query
         return $this->from->toString();
     }
 
+    private function buildWhere()
+    {
+        return $this->from->toString();
+    }
+
     private function addColumns($columns)
     {
-        $columns = $this->ensureIsArray($columns);
+        $columns = array_filter($this->ensureIsArray($columns));
 
         foreach($columns as $column)
         {
@@ -66,7 +81,12 @@ class Select implements Query
             }
         }
 
-        $this->columns = array_filter(array_unique(array_merge($this->columns, $columns)));
+        $this->columns = array_unique(array_merge($this->columns, $columns));
+    }
+
+    private function addCondition(Condition $condition)
+    {
+        $this->conditions[] = $condition;
     }
 
     private function ensureIsArray($select)

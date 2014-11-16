@@ -20,8 +20,8 @@ class EqualTest extends PHPUnit_Framework_TestCase
      */
     public function testEqual($expected, $column, Type $type)
     {
-        $type->setEscaper($this->escaper);
         $condition = new Conditions\Equal($column, $type);
+        $condition->setEscaper($this->escaper);
 
         $this->assertSame($expected, $condition->toString());
     }
@@ -30,7 +30,10 @@ class EqualTest extends PHPUnit_Framework_TestCase
     {
         return array(
             'simple string' => array("name = 'poney'", 'name', new Types\String('poney')),
+            'empty string'  => array("name = ''", 'name', new Types\String('')),
             'simple int'    => array("id = 666", 'id', new Types\Int(666)),
+            'empty int'     => array('id = 0', 'id', new Types\Int('')),
+            'empty column name' => array('', '', new Types\String('poney')),
         );
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use Mdd\QueryBuilder\Queries;
+use Mdd\QueryBuilder\Conditions;
+use Mdd\QueryBuilder\Types;
 
 class SelectTest extends PHPUnit_Framework_TestCase
 {
@@ -32,14 +34,15 @@ class SelectTest extends PHPUnit_Framework_TestCase
 
 //     public function testSelectWithCondition()
 //     {
-//         $qb = new Queries\Select($columns);
+//         $qb = new Queries\Select();
 
 //         $qb
-//             ->from($tableName)
-//             ->where()
+//             ->from('poney')
+//             ->select(array('id', 'name'))
+//             ->where(new Conditions\Equal('name', new Types\String('rainbow')))
 //         ;
 
-//         $this->assertSame($qb->toString(), $expected);
+//         $this->assertSame("SELECT id, name FROM poney WHERE name = 'rainbow'", $qb->toString());
 //     }
 
     public function testAddSelect()
