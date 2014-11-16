@@ -16,7 +16,7 @@ class Select implements Query
     public function __construct($columns = null)
     {
         $this->select = new PartBuilders\Select();
-        $this->conditions = array();
+        $this->where = new PartBuilders\Where();
 
         $this->select->select($columns);
     }
@@ -24,9 +24,10 @@ class Select implements Query
     public function toString()
     {
         return sprintf(
-            '%s %s',
+            '%s %s %s',
             $this->buildSelect(),
-            $this->buildFrom()
+            $this->buildFrom(),
+            $this->buildWhere()
         );
     }
 
@@ -46,7 +47,7 @@ class Select implements Query
 
     public function where(Condition $condition)
     {
-        $this->addCondition($condition);
+        $this->where->where($condition);
 
         return $this;
     }
@@ -63,11 +64,6 @@ class Select implements Query
 
     private function buildWhere()
     {
-        return $this->from->toString();
-    }
-
-    private function addCondition(Condition $condition)
-    {
-        $this->conditions[] = $condition;
+        return $this->where->toString();
     }
 }
