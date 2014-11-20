@@ -19,7 +19,7 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
      */
     public function testAndCondition($expected, $conditionA, $conditionB)
     {
-        $condition = new Conditions\AndCondition($conditionA, $conditionB);
+        $condition = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
 
         $this->assertSame($expected, $condition->toString($this->escaper));
     }
@@ -30,7 +30,7 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
         $conditionB = new Conditions\Equal('taste', new Types\String('burger'));
         $conditionC = new Conditions\Equal('rank', new Types\Int('42'));
 
-        $nestedConditions = new Conditions\AndCondition($conditionA, $conditionB);
+        $nestedConditions = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
 
         return array(
             'simple And Condition' => array("(name = 'rainbow' AND taste = 'burger')", $conditionA, $conditionB),
