@@ -14,6 +14,17 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
         $this->escaper = new SimpleEscaper();
     }
 
+    public function testHelper()
+    {
+        $condition = (new Conditions\Equal('name', new Types\String('rainbow')))
+            ->and(
+                (new Conditions\Equal('taste', new Types\String('burger')))
+                ->or(new Conditions\Equal('rank', new Types\Int(42)))
+            );
+
+        $this->assertSame($condition->toString($this->escaper), "name = 'rainbow' AND (taste = 'burger' OR rank = 42)");
+    }
+
     /**
      * @dataProvider providerTestAndCondition
      */
@@ -31,13 +42,13 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
         $conditionC = new Conditions\Equal('rank', new Types\Int('42'));
         $conditionD = new Conditions\Equal('author', new Types\String('julian'));
 
-        $nested1 = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
-        $nested2 = new Conditions\Binaries\AndCondition($conditionC, $conditionD);
+        $composite1 = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
+        $composite2 = new Conditions\Binaries\AndCondition($conditionC, $conditionD);
 
         return array(
             'simple + simple'       => array("name = 'rainbow' AND taste = 'burger'", $conditionA, $conditionB),
-            'composite + condition' => array("(name = 'rainbow' AND taste = 'burger') AND rank = 42", $nested1, $conditionC),
-            'composite + composite' => array("(name = 'rainbow' AND taste = 'burger') AND (rank = 42 AND author = 'julian')", $nested1, $nested2),
+            'composite + condition' => array("(name = 'rainbow' AND taste = 'burger') AND rank = 42", $composite1, $conditionC),
+            'composite + composite' => array("(name = 'rainbow' AND taste = 'burger') AND (rank = 42 AND author = 'julian')", $composite1, $composite2),
         );
     }
 }

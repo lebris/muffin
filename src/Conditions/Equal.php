@@ -7,7 +7,7 @@ use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Escaper;
 
-class Equal implements Condition
+class Equal extends AbstractCondition
 {
     use EscaperAware;
 
