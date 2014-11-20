@@ -46,7 +46,7 @@ class Where implements PartBuilder
         $whereConditions = array();
         foreach($this->conditions as $condition)
         {
-            $conditionString = $condition->toString();
+            $conditionString = $condition->toString($this->escaper);
             if(! empty($conditionString))
             {
                 $whereConditions[] = $conditionString;

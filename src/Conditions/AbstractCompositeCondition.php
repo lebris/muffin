@@ -5,11 +5,10 @@ namespace Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Conditions\CompositeCondition;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
+use Mdd\QueryBuilder\Escaper;
 
 abstract class AbstractCompositeCondition implements CompositeCondition
 {
-    use EscaperAware;
-
     protected
         $leftCondition,
         $rightCondition;
@@ -20,13 +19,10 @@ abstract class AbstractCompositeCondition implements CompositeCondition
         $this->rightCondition = $rightCondition;
     }
 
-    public function toString()
+    public function toString(Escaper $escaper)
     {
-        $this->leftCondition->setEscaper($this->escaper);
-        $this->rightCondition->setEscaper($this->escaper);
-
-        return $this->buildCondition();
+        return $this->buildCondition($escaper);
     }
 
-    abstract protected function buildCondition();
+    abstract protected function buildCondition(Escaper $escaper);
 }

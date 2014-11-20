@@ -5,9 +5,13 @@ namespace Mdd\QueryBuilder\Queries;
 use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\PartBuilders;
 use Mdd\QueryBuilder\Condition;
+use Mdd\QueryBuilder\Escaper;
+use Mdd\QueryBuilder\Traits\EscaperAware;
 
 class Select implements Query
 {
+    use EscaperAware;
+
     private
         $conditions,
         $select,
@@ -64,6 +68,8 @@ class Select implements Query
 
     private function buildWhere()
     {
+        $this->where->setEscaper($this->escaper);
+
         return $this->where->toString();
     }
 }

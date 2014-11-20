@@ -21,9 +21,8 @@ class EqualTest extends PHPUnit_Framework_TestCase
     public function testEqual($expected, $column, Type $type)
     {
         $condition = new Conditions\Equal($column, $type);
-        $condition->setEscaper($this->escaper);
 
-        $this->assertSame($expected, $condition->toString());
+        $this->assertSame($expected, $condition->toString($this->escaper));
     }
 
     public function providerTestEqual()

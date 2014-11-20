@@ -3,15 +3,16 @@
 namespace Mdd\QueryBuilder\Conditions;
 
 use Mdd\QueryBuilder\Condition;
+use Mdd\QueryBuilder\Escaper;
 
 class AndCondition extends AbstractCompositeCondition
 {
-    protected function buildCondition()
+    protected function buildCondition(Escaper $escaper)
     {
         return sprintf(
             '(%s AND %s)',
-            $this->leftCondition->toString(),
-            $this->rightCondition->toString()
+            $this->leftCondition->toString($escaper),
+            $this->rightCondition->toString($escaper)
         );
     }
 }

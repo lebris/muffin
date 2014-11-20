@@ -21,8 +21,8 @@ class WhereTest extends PHPUnit_Framework_TestCase
      */
     public function testWhere($expected, Condition $condition)
     {
-        $condition->setEscaper($this->escaper);
         $where = new Parts\Where($condition);
+        $where->setEscaper($this->escaper);
 
         $this->assertSame($expected, $where->toString());
     }

@@ -20,9 +20,8 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
     public function testAndCondition($expected, $conditionA, $conditionB)
     {
         $condition = new Conditions\AndCondition($conditionA, $conditionB);
-        $condition->setEscaper($this->escaper);
 
-        $this->assertSame($expected, $condition->toString());
+        $this->assertSame($expected, $condition->toString($this->escaper));
     }
 
     public function providerTestAndCondition()

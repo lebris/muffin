@@ -4,5 +4,5 @@ namespace Mdd\QueryBuilder;
 
 interface Condition
 {
-    public function toString();
+    public function toString(Escaper $escaper);
 }

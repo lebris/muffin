@@ -5,6 +5,7 @@ namespace Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Traits\EscaperAware;
+use Mdd\QueryBuilder\Escaper;
 
 class Equal implements Condition
 {
@@ -20,9 +21,9 @@ class Equal implements Condition
         $this->type = $type;
     }
 
-    public function toString()
+    public function toString(Escaper $escaper)
     {
-        $value = $this->getEscapedValue();
+        $value = $this->escapeValue($this->type->getValue(), $escaper);
 
         if(empty($this->column))
         {
@@ -32,13 +33,11 @@ class Equal implements Condition
         return sprintf('%s = %s', $this->column, $value);
     }
 
-    private function getEscapedValue()
+    private function escapeValue($value, Escaper $escaper)
     {
-        $value = $this->type->getValue();
-
         if($this->type->isEscapeRequired())
         {
-            $value = $this->escaper->escape($value);
+            $value = $escaper->escape($value);
         }
 
         return $value;
