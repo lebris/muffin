@@ -12,5 +12,7 @@ trait EscaperAware
     public function setEscaper(Escaper $escaper)
     {
         $this->escaper = $escaper;
+
+        return $this;
     }
 }
