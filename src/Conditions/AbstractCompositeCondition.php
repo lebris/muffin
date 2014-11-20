@@ -24,5 +24,17 @@ abstract class AbstractCompositeCondition implements CompositeCondition
         return $this->buildCondition($escaper);
     }
 
+    protected function buildPartCondition(Condition $condition, Escaper $escaper)
+    {
+        $partCondition = $condition->toString($escaper);
+
+        if($condition instanceof CompositeCondition)
+        {
+            $partCondition = sprintf('(%s)', $partCondition);
+        }
+
+        return $partCondition;
+    }
+
     abstract protected function buildCondition(Escaper $escaper);
 }

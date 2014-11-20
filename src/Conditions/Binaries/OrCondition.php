@@ -12,8 +12,8 @@ class OrCondition extends AbstractCompositeCondition
     {
         return sprintf(
             '%s OR %s',
-            $this->leftCondition->toString($escaper),
-            $this->rightCondition->toString($escaper)
+            $this->buildPartCondition($this->leftCondition, $escaper),
+            $this->buildPartCondition($this->rightCondition, $escaper)
         );
     }
 }

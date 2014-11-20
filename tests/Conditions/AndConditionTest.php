@@ -29,12 +29,15 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
         $conditionA = new Conditions\Equal('name', new Types\String('rainbow'));
         $conditionB = new Conditions\Equal('taste', new Types\String('burger'));
         $conditionC = new Conditions\Equal('rank', new Types\Int('42'));
+        $conditionD = new Conditions\Equal('author', new Types\String('julian'));
 
-        $nestedConditions = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
+        $nested1 = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
+        $nested2 = new Conditions\Binaries\AndCondition($conditionC, $conditionD);
 
         return array(
-            'simple And Condition' => array("(name = 'rainbow' AND taste = 'burger')", $conditionA, $conditionB),
-            'nested And Condition' => array("((name = 'rainbow' AND taste = 'burger') AND rank = 42)", $nestedConditions, $conditionC),
+            'simple + simple'       => array("name = 'rainbow' AND taste = 'burger'", $conditionA, $conditionB),
+            'composite + condition' => array("(name = 'rainbow' AND taste = 'burger') AND rank = 42", $nested1, $conditionC),
+            'composite + composite' => array("(name = 'rainbow' AND taste = 'burger') AND (rank = 42 AND author = 'julian')", $nested1, $nested2),
         );
     }
 }
