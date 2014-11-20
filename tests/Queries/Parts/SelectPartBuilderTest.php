@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\PartBuilders;
+use Mdd\QueryBuilder\Queries\Parts;
 
 class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testSelectViaConstructor($expected, $columns)
     {
-        $select = new PartBuilders\Select($columns);
+        $select = new Parts\Select($columns);
 
         $this->assertSame($expected, $select->toString());
     }
@@ -19,7 +19,7 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testSelectViaSetter($expected, $columns)
     {
-        $select = new PartBuilders\Select();
+        $select = new Parts\Select();
         $select->select($columns);
 
         $this->assertSame($expected, $select->toString());
@@ -37,7 +37,7 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testAddColumnsOnTheFly()
     {
-        $select = new PartBuilders\Select('id');
+        $select = new Parts\Select('id');
         $select
             ->select('name')
             ->select(array('color', 'taste'));

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\PartBuilders;
+namespace Mdd\QueryBuilder\Queries\Parts;
 
 use Mdd\QueryBuilder\PartBuilder;
 use Mdd\QueryBuilder\Condition;

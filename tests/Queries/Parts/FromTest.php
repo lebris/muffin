@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\PartBuilders;
+use Mdd\QueryBuilder\Queries\Parts;
 
 class FromTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class FromTest extends PHPUnit_Framework_TestCase
      */
     public function testFrom($expected, $tableName)
     {
-        $qb = new PartBuilders\From($tableName);
+        $qb = new Parts\From($tableName);
 
         $this->assertSame($qb->toString(), $expected);
     }
@@ -29,7 +29,7 @@ class FromTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidTableName($tableName)
     {
-        $qb = new PartBuilders\From($tableName);
+        $qb = new Parts\From($tableName);
 
         $qb->toString($tableName);
     }

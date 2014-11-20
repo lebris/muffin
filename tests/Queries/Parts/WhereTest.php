@@ -3,7 +3,7 @@
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\PartBuilders;
+use Mdd\QueryBuilder\Queries\Parts;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 
 class WhereTest extends PHPUnit_Framework_TestCase
@@ -22,7 +22,7 @@ class WhereTest extends PHPUnit_Framework_TestCase
     public function testWhere($expected, Condition $condition)
     {
         $condition->setEscaper($this->escaper);
-        $where = new PartBuilders\Where($condition);
+        $where = new Parts\Where($condition);
 
         $this->assertSame($expected, $where->toString());
     }

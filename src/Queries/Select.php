@@ -15,8 +15,8 @@ class Select implements Query
 
     public function __construct($columns = null)
     {
-        $this->select = new PartBuilders\Select();
-        $this->where = new PartBuilders\Where();
+        $this->select = new Parts\Select();
+        $this->where = new Parts\Where();
 
         $this->select->select($columns);
     }
@@ -33,7 +33,7 @@ class Select implements Query
 
     public function from($table)
     {
-        $this->from = new PartBuilders\From($table);
+        $this->from = new Parts\From($table);
 
         return $this;
     }
