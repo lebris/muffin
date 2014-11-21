@@ -42,13 +42,20 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
         $conditionC = new Conditions\Equal('rank', new Types\Int('42'));
         $conditionD = new Conditions\Equal('author', new Types\String('julian'));
 
-        $composite1 = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
-        $composite2 = new Conditions\Binaries\AndCondition($conditionC, $conditionD);
+        $orComposite1  = new Conditions\Binaries\OrCondition($conditionA, $conditionB);
+        $orComposite2  = new Conditions\Binaries\OrCondition($conditionC, $conditionD);
+
+        $andComposite1 = new Conditions\Binaries\AndCondition($conditionA, $conditionB);
+        $andComposite2 = new Conditions\Binaries\AndCondition($conditionC, $conditionD);
 
         return array(
             'simple + simple'       => array("name = 'rainbow' AND taste = 'burger'", $conditionA, $conditionB),
-            'composite + condition' => array("(name = 'rainbow' AND taste = 'burger') AND rank = 42", $composite1, $conditionC),
-            'composite + composite' => array("(name = 'rainbow' AND taste = 'burger') AND (rank = 42 AND author = 'julian')", $composite1, $composite2),
+
+            'AndComposite && condition' => array("(name = 'rainbow' AND taste = 'burger') AND rank = 42", $andComposite1, $conditionC),
+            'AndComposite || AndComposite' => array("(name = 'rainbow' AND taste = 'burger') AND (rank = 42 AND author = 'julian')", $andComposite1, $andComposite2),
+
+            'OrComposite || condition' => array("(name = 'rainbow' OR taste = 'burger') AND rank = 42", $orComposite1, $conditionC),
+            'OrComposite || OrComposite' => array("(name = 'rainbow' OR taste = 'burger') AND (rank = 42 OR author = 'julian')", $orComposite1, $orComposite2),
         );
     }
 }
