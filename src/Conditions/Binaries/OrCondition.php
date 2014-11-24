@@ -4,7 +4,6 @@ namespace Mdd\QueryBuilder\Conditions\Binaries;
 
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Escaper;
-use Mdd\QueryBuilder\Conditions\AbstractCompositeCondition;
 
 class OrCondition extends AbstractCompositeCondition
 {

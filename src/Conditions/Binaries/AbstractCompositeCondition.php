@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions;
+namespace Mdd\QueryBuilder\Conditions\Binaries;
 
 use Mdd\QueryBuilder\Conditions\CompositeCondition;
 use Mdd\QueryBuilder\Condition;
