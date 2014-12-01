@@ -14,7 +14,7 @@ class InnerJoin implements PartBuilder
 
     public function __construct($table, $alias = null)
     {
-        $this->table = (string) $table;
+        $this->table = new TableName($table, $alias);
         $this->on = array();
 
         if(!empty($alias))
@@ -44,25 +44,13 @@ class InnerJoin implements PartBuilder
     {
         $joinQueryPart = sprintf(
             'INNER JOIN %s',
-            $this->buildTableClause()
+            $this->table->toString()
         );
 
         $joinQueryPart .= $this->buildOnConditionClause();
         $joinQueryPart .= $this->buildUsingConditionClause();
 
         return $joinQueryPart;
-    }
-
-    private function buildTableClause()
-    {
-        $tableClause = $this->table;
-
-        if(! empty($this->alias))
-        {
-            $tableClause .= ' AS ' . $this->alias;
-        }
-
-        return $tableClause;
     }
 
     private function buildUsingConditionClause()

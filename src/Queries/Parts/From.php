@@ -9,23 +9,18 @@ class From implements PartBuilder
     private
         $tableName;
 
-    public function __construct($tableName)
+    public function __construct($tableName, $alias = null)
     {
         if(empty($tableName))
         {
             throw new \InvalidArgumentException('Empty table name.');
         }
 
-        if(! is_string($tableName))
-        {
-            throw new \InvalidArgumentException('Table name must be a string');
-        }
-
-        $this->tableName = $tableName;
+        $this->tableName = new TableName($tableName, $alias);
     }
 
     public function toString()
     {
-        return sprintf('FROM %s', $this->tableName);
+        return sprintf('FROM %s', $this->tableName->toString());
     }
 }
