@@ -21,7 +21,7 @@ class FromTest extends PHPUnit_Framework_TestCase
             'Mixed table name'  => array('FROM poney666', 'poney666', null),
             'wrapped with 0'    => array('FROM 000poney000', '000poney000', null),
             'empty alias'        => array('FROM poney', 'poney', ''),
-//             'with alias'        => array('FROM poney AS p', 'poney', 'p'),
+            'with alias'        => array('FROM poney AS p', 'poney', 'p'),
         );
     }
 
