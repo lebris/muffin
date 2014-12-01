@@ -69,4 +69,59 @@ class SelectTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("SELECT id, name, rank, taste, price FROM poney WHERE name = 'burger'", $query->toString($this->escaper));
     }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testSelectWithoutFrom()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query->toString();
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testJoinWrongSynthax()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('truc')
+            ->on('p.taste_id', 't.id')
+        ;
+
+        $query->toString();
+    }
+
+    public function testSingleInnerJoin()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->innerJoin('taste', 't')->on('p.taste_id', 't.id')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p INNER JOIN taste AS t ON p.taste_id = t.id WHERE name = 'burger'", $query->toString($this->escaper));
+    }
+
+    public function testMultipleInnerJoin()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->innerJoin('taste', 't')->on('p.taste_id', 't.id')
+            ->innerJoin('country', 'c')->on('c.country_id', 'c.id')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p INNER JOIN taste AS t ON p.taste_id = t.id INNER JOIN country AS c ON c.country_id = c.id WHERE name = 'burger'", $query->toString($this->escaper));
+    }
 }
