@@ -28,6 +28,18 @@ class SelectTest extends PHPUnit_Framework_TestCase
         $this->assertSame("SELECT id, name FROM poney WHERE name = 'burger'", $query->toString($this->escaper));
     }
 
+    public function testSelectAlias()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select(array('id', 'name'))
+            ->from('poney', 'z')
+        ;
+
+        $this->assertSame("SELECT id, name FROM poney AS z", $query->toString($this->escaper));
+    }
+
     public function testSelectMultipleWhere()
     {
         $query = (new Queries\Select())->setEscaper($this->escaper);
@@ -57,18 +69,4 @@ class SelectTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("SELECT id, name, rank, taste, price FROM poney WHERE name = 'burger'", $query->toString($this->escaper));
     }
-
-//     public function testSelectInnerJoin()
-//     {
-//         $query = (new Queries\Select())->setEscaper($this->escaper);
-
-//         $query
-//             ->select('id')
-//             ->from('poney', 'p')
-//             ->innerJoin('')->on()
-//             ->where(new Conditions\Equal('name', new Types\String('burger')))
-//         ;
-
-//         $this->assertSame("SELECT id, name, rank, taste, price FROM poney AS p WHERE name = 'burger'", $query->toString($this->escaper));
-//     }
 }

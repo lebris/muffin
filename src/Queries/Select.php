@@ -27,17 +27,18 @@ class Select implements Query
 
     public function toString()
     {
-        return sprintf(
-            '%s %s %s',
+        $queryParts = array(
             $this->buildSelect(),
             $this->buildFrom(),
-            $this->buildWhere()
+            $this->buildWhere(),
         );
+
+        return implode(' ', array_filter($queryParts));
     }
 
-    public function from($table)
+    public function from($table, $alias = null)
     {
-        $this->from = new Parts\From($table);
+        $this->from = new Parts\From($table, $alias);
 
         return $this;
     }
