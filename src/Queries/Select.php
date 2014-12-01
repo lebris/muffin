@@ -69,6 +69,14 @@ class Select implements Query
         return $this;
     }
 
+    public function using($column)
+    {
+        $innerJoin = $this->getLastInnerJoin();
+        $innerJoin->using($column);
+
+        return $this;
+    }
+
     public function where(Condition $condition)
     {
         $this->where->where($condition);

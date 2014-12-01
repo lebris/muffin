@@ -119,9 +119,10 @@ class SelectTest extends PHPUnit_Framework_TestCase
             ->from('poney', 'p')
             ->innerJoin('taste', 't')->on('p.taste_id', 't.id')
             ->innerJoin('country', 'c')->on('c.country_id', 'c.id')
+            ->innerJoin('unicorn')->using('code')
             ->where(new Conditions\Equal('name', new Types\String('burger')))
         ;
 
-        $this->assertSame("SELECT id FROM poney AS p INNER JOIN taste AS t ON p.taste_id = t.id INNER JOIN country AS c ON c.country_id = c.id WHERE name = 'burger'", $query->toString($this->escaper));
+        $this->assertSame("SELECT id FROM poney AS p INNER JOIN taste AS t ON p.taste_id = t.id INNER JOIN country AS c ON c.country_id = c.id INNER JOIN unicorn USING (code) WHERE name = 'burger'", $query->toString($this->escaper));
     }
 }
