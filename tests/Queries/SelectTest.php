@@ -73,9 +73,20 @@ class SelectTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException \LogicException
      */
-    public function testSelectWithoutFrom()
+    public function testSelectWithoutSelectOrFrom()
     {
         $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query->toString();
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testSelectWithoutFrom()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper)
+            ->select('burger');
 
         $query->toString();
     }
