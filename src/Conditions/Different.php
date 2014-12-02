@@ -3,13 +3,10 @@
 namespace Mdd\QueryBuilder\Conditions;
 
 use Mdd\QueryBuilder\Escaper;
-use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Type;
 
 class Different extends AbstractCondition
 {
-    use EscaperAware;
-
     private
         $column,
         $type;
