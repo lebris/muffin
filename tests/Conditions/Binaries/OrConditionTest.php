@@ -19,7 +19,7 @@ class OrConditionTest extends PHPUnit_Framework_TestCase
         $condition = (new Conditions\Equal('name', new Types\String('rainbow')))
             ->or(
                 (new Conditions\Equal('taste', new Types\String('burger')))
-                ->and(new Conditions\Equal('rank', new Types\Int(42)))
+                ->and(new Conditions\Equal('rank', new Types\Integer(42)))
             );
 
         $this->assertSame($condition->toString($this->escaper), "name = 'rainbow' OR (taste = 'burger' AND rank = 42)");
@@ -39,7 +39,7 @@ class OrConditionTest extends PHPUnit_Framework_TestCase
     {
         $conditionA = new Conditions\Equal('name', new Types\String('rainbow'));
         $conditionB = new Conditions\Equal('taste', new Types\String('burger'));
-        $conditionC = new Conditions\Equal('rank', new Types\Int('42'));
+        $conditionC = new Conditions\Equal('rank', new Types\Integer('42'));
         $conditionD = new Conditions\Equal('author', new Types\String('julian'));
 
         $orComposite1  = new Conditions\Binaries\OrCondition($conditionA, $conditionB);

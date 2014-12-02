@@ -48,7 +48,7 @@ class SelectTest extends PHPUnit_Framework_TestCase
             ->select(array('id', 'name'))
             ->from('poney')
             ->where(new Conditions\Equal('name', new Types\String('burger')))
-            ->where(new Conditions\Equal('rank', new Types\Int(42)))
+            ->where(new Conditions\Equal('rank', new Types\Integer(42)))
         ;
 
         $this->assertSame("SELECT id, name FROM poney WHERE name = 'burger' AND rank = 42", $query->toString($this->escaper));

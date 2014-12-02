@@ -30,8 +30,8 @@ class EqualTest extends PHPUnit_Framework_TestCase
         return array(
             'simple string' => array("name = 'poney'", 'name', new Types\String('poney')),
             'empty string'  => array("name = ''", 'name', new Types\String('')),
-            'simple int'    => array("id = 666", 'id', new Types\Int(666)),
-            'empty int'     => array('id = 0', 'id', new Types\Int('')),
+            'simple int'    => array("id = 666", 'id', new Types\Integer(666)),
+            'empty int'     => array('id = 0', 'id', new Types\Integer('')),
             'empty column name' => array('', '', new Types\String('poney')),
         );
     }

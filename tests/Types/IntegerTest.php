@@ -3,7 +3,7 @@
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 
-class IntTest extends PHPUnit_Framework_TestCase
+class IntegerTest extends PHPUnit_Framework_TestCase
 {
     protected
         $escaper;
@@ -18,7 +18,7 @@ class IntTest extends PHPUnit_Framework_TestCase
      */
     public function testFormatInt($expected, $value)
     {
-        $type = new Types\Int($value);
+        $type = new Types\Integer($value);
 
         $this->assertSame($expected, $type->getValue());
     }

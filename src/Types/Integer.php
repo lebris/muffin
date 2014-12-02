@@ -2,7 +2,7 @@
 
 namespace Mdd\QueryBuilder\Types;
 
-class Int extends AbstractType
+class Integer extends AbstractType
 {
     public function isEscapeRequired()
     {

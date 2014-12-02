@@ -33,7 +33,7 @@ class WhereTest extends PHPUnit_Framework_TestCase
             'empty condition' => array('', new Conditions\Equal('', new Types\String(''))),
             'simple string condition #1' => array("WHERE name = 'burger'", new Conditions\Equal('name', new Types\String('burger'))),
             'simple string condition #2' => array("WHERE name = '666'", new Conditions\Equal('name', new Types\String('666'))),
-            'simple int condition' => array("WHERE name = 666", new Conditions\Equal('name', new Types\Int(666))),
+            'simple int condition' => array("WHERE name = 666", new Conditions\Equal('name', new Types\Integer(666))),
         );
     }
 }
