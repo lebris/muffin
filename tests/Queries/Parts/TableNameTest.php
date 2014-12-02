@@ -30,7 +30,7 @@ class TableNameTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyTableName($tableName)
     {
-        $qb = new Parts\From($tableName);
+        $qb = new Parts\TableName($tableName);
 
         $qb->toString($tableName);
     }
