@@ -206,6 +206,23 @@ class SelectTest extends PHPUnit_Framework_TestCase
         $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' LIMIT 42", $query->toString($this->escaper));
     }
 
+    public function testGroupBy()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+            ->groupBy('taste_id')
+            ->groupBy('color')
+            ->limit(42, 1337)
+            ->orderBy('poney')
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' GROUP BY taste_id, color ORDER BY poney ASC LIMIT 1337, 42", $query->toString($this->escaper));
+    }
+
     public function testOrderBy()
     {
         $query = (new Queries\Select())->setEscaper($this->escaper);
