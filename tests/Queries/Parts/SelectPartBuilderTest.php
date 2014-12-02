@@ -44,4 +44,14 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('SELECT id, name, color, taste', $select->toString());
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidColumnName()
+    {
+        $select = new Parts\Select(array('poney', new stdClass()));
+
+        $select->toString();
+    }
 }
