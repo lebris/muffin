@@ -20,9 +20,9 @@ class OrderBy implements PartBuilder
 
     public function orderBy($column, $direction = self::ASC)
     {
-        $directrion = $this->validateDirection((string) $direction);
+        $this->validateDirection($direction);
 
-        $this->orders[$column] = $direction;
+        $this->orders[$column] = (string) $direction;
     }
 
     public function toString()
@@ -51,7 +51,5 @@ class OrderBy implements PartBuilder
         {
             throw new \InvalidArgumentException(sprintf('Unsupported ORDER BY direction "%s"', $direction));
         }
-
-        $this->direction = $direction;
     }
 }
