@@ -26,6 +26,15 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \LogicException
+     */
+    public function testTypoInHelperName()
+    {
+        $condition = new Conditions\Equal('taste', new Types\String('burger'));
+        $condition->adn(new Conditions\Equal('taste', new Types\String('vegetable')));
+    }
+
+    /**
      * @dataProvider providerTestAndCondition
      */
     public function testAndCondition($expected, $conditionA, $conditionB)

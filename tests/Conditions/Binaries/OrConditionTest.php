@@ -26,6 +26,15 @@ class OrConditionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \LogicException
+     */
+    public function testTypoInHelperName()
+    {
+        $condition = new Conditions\Equal('taste', new Types\String('burger'));
+        $condition->ro(new Conditions\Equal('taste', new Types\String('vegetable')));
+    }
+
+    /**
      * @dataProvider providerTestOrCondition
      */
     public function testOrCondition($expected, $conditionA, $conditionB)
