@@ -16,13 +16,13 @@ class Select implements Query
     private
         $conditions,
         $select,
-        $innerJoins,
+        $joins,
         $from;
 
     public function __construct($columns = null)
     {
         $this->select = new Parts\Select();
-        $this->innerJoins = array();
+        $this->joins = array();
         $this->where = new Parts\Where();
 
         $this->select->select($columns);
@@ -56,23 +56,37 @@ class Select implements Query
 
     public function innerJoin($table, $alias = null)
     {
-        $this->innerJoins[] = new Parts\InnerJoin($table, $alias);
+        $this->joins[] = new Parts\Joins\InnerJoin($table, $alias);
+
+        return $this;
+    }
+
+    public function leftJoin($table, $alias = null)
+    {
+        $this->joins[] = new Parts\Joins\LeftJoin($table, $alias);
+
+        return $this;
+    }
+
+    public function rightJoin($table, $alias = null)
+    {
+        $this->joins[] = new Parts\Joins\RightJoin($table, $alias);
 
         return $this;
     }
 
     public function on($leftColumn, $rightColumn)
     {
-        $innerJoin = $this->getLastInnerJoin();
-        $innerJoin->on($leftColumn, $rightColumn);
+        $join = $this->getLastJoin();
+        $join->on($leftColumn, $rightColumn);
 
         return $this;
     }
 
     public function using($column)
     {
-        $innerJoin = $this->getLastInnerJoin();
-        $innerJoin->using($column);
+        $join = $this->getLastJoin();
+        $join->using($column);
 
         return $this;
     }
@@ -87,16 +101,16 @@ class Select implements Query
     /**
      * @return Parts\InnerJoin
      */
-    private function getLastInnerJoin()
+    private function getLastJoin()
     {
-        $lastInnerJoins = end($this->innerJoins);
+        $lastJoins = end($this->joins);
 
-        if(! $lastInnerJoins instanceof Parts\InnerJoin)
+        if(! $lastJoins instanceof Parts\Join)
         {
             throw new \LogicException('Erreur dans la récupération de la dernière jointure');
         }
 
-        return $lastInnerJoins;
+        return $lastJoins;
     }
 
     private function buildSelect()
@@ -125,7 +139,7 @@ class Select implements Query
     {
         $joins = array();
 
-        foreach($this->innerJoins as $innerJoin)
+        foreach($this->joins as $innerJoin)
         {
             $joins[] = $innerJoin->toString();
         }

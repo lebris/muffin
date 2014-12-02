@@ -96,6 +96,34 @@ class SelectTest extends PHPUnit_Framework_TestCase
         $query->toString();
     }
 
+    public function testSingleRightJoin()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->rightJoin('taste', 't')->on('p.taste_id', 't.id')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p RIGHT JOIN taste AS t ON p.taste_id = t.id WHERE name = 'burger'", $query->toString($this->escaper));
+    }
+
+    public function testSingleLeftJoin()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->leftJoin('taste', 't')->on('p.taste_id', 't.id')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p LEFT JOIN taste AS t ON p.taste_id = t.id WHERE name = 'burger'", $query->toString($this->escaper));
+    }
+
     public function testSingleInnerJoin()
     {
         $query = (new Queries\Select())->setEscaper($this->escaper);
@@ -124,5 +152,21 @@ class SelectTest extends PHPUnit_Framework_TestCase
         ;
 
         $this->assertSame("SELECT id FROM poney AS p INNER JOIN taste AS t ON p.taste_id = t.id INNER JOIN country AS c ON c.country_id = c.id INNER JOIN unicorn USING (code) WHERE name = 'burger'", $query->toString($this->escaper));
+    }
+
+    public function testMultipleMixedJoin()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->innerJoin('taste', 't')->on('p.taste_id', 't.id')
+            ->rightJoin('country', 'c')->on('c.country_id', 'c.id')
+            ->leftJoin('unicorn')->using('code')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p INNER JOIN taste AS t ON p.taste_id = t.id RIGHT JOIN country AS c ON c.country_id = c.id LEFT JOIN unicorn USING (code) WHERE name = 'burger'", $query->toString($this->escaper));
     }
 }

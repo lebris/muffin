@@ -1,20 +1,22 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Parts;
+namespace Mdd\QueryBuilder\Queries\Parts\Joins;
 
 use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Queries\Parts\Join;
+use Mdd\QueryBuilder\Queries\Parts;
 
-class InnerJoin implements PartBuilder
+abstract class AbstractJoin implements Join, PartBuilder
 {
     private
-        $table,
-        $alias,
-        $using,
-        $on;
+    $table,
+    $alias,
+    $using,
+    $on;
 
     public function __construct($table, $alias = null)
     {
-        $this->table = new TableName($table, $alias);
+        $this->table = new Parts\TableName($table, $alias);
         $this->on = array();
 
         if(!empty($alias))
@@ -27,7 +29,7 @@ class InnerJoin implements PartBuilder
     {
         $this->on = array();
 
-        $this->using = new Using($column);
+        $this->using = new Parts\Using($column);
 
         return $this;
     }
@@ -35,7 +37,7 @@ class InnerJoin implements PartBuilder
     public function on($leftColumn, $rightColumn)
     {
         $this->using = null;
-        $this->on[] = new On($leftColumn, $rightColumn);
+        $this->on[] = new Parts\On($leftColumn, $rightColumn);
 
         return $this;
     }
@@ -43,7 +45,8 @@ class InnerJoin implements PartBuilder
     public function toString()
     {
         $joinQueryPart = sprintf(
-            'INNER JOIN %s',
+            '%s %s',
+            $this->getJoinDeclaration(),
             $this->table->toString()
         );
 
@@ -52,6 +55,8 @@ class InnerJoin implements PartBuilder
 
         return $joinQueryPart;
     }
+
+    abstract protected function getJoinDeclaration();
 
     private function buildUsingConditionClause()
     {
