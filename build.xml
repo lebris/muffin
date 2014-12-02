@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="mdd-application" default="build">
  <target name="build"
-   depends="prepare,composer,lint,phploc,pdepend,phpmd,phpcs,phpcpd,phpcb"/>
+   depends="prepare,composer,lint,phploc,pdepend,phpmd,phpcs,phpcpd,phpcb,phpunit"/>
 
  <target name="clean" description="Cleanup build artifacts">
+  <delete dir="${basedir}/vendor"/>
   <delete dir="${basedir}/build/api"/>
   <delete dir="${basedir}/build/code-browser"/>
   <delete dir="${basedir}/build/coverage"/>
@@ -95,6 +96,20 @@
    <arg path="${basedir}/src" />
    <arg value="--output" />
    <arg path="${basedir}/build/code-browser" />
+  </exec>
+ </target>
+
+ <target name="phpunit" description="Run unit tests with PHPUnit">
+  <exec executable="vendor/bin/phpunit" dir="${basedir}" failonerror="true">
+   <arg value="-c" />
+   <arg path="phpunit.xml" />
+   <arg value="--coverage-html" />
+   <arg path="${basedir}/build/coverage" />
+   <arg value="--coverage-clover" />
+   <arg path="${basedir}/build/logs/clover.xml" />
+   <arg value="--log-junit" />
+   <arg path="${basedir}/build/logs/junit.xml" />
+   <arg value="tests" />
   </exec>
  </target>
 
