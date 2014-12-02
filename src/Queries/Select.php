@@ -105,7 +105,7 @@ class Select implements Query
 
     public function orderBy($column, $directrion = Parts\OrderBy::ASC)
     {
-        $this->orderBy->orderBy($column, $directrion);
+        $this->orderBy->addOrderBy($column, $directrion);
 
         return $this;
     }

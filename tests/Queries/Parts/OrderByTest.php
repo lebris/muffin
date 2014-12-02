@@ -7,7 +7,7 @@ class OrderByTest extends PHPUnit_Framework_TestCase
     public function testDefaultOrderByDirection()
     {
         $qb = new Parts\OrderBy();
-        $qb->orderBy('poney');
+        $qb->addOrderBy('poney');
 
         $this->assertSame('ORDER BY poney ASC', $qb->toString());
     }
@@ -18,7 +18,7 @@ class OrderByTest extends PHPUnit_Framework_TestCase
     public function testSingleOrderBy($expected, $column, $direction)
     {
         $qb = new Parts\OrderBy();
-        $qb->orderBy($column, $direction);
+        $qb->addOrderBy($column, $direction);
 
         $this->assertSame($expected, $qb->toString());
     }
@@ -43,7 +43,7 @@ class OrderByTest extends PHPUnit_Framework_TestCase
 
         foreach($orderBy as $column => $direction)
         {
-            $qb->orderBy($column, $direction);
+            $qb->addOrderBy($column, $direction);
         }
 
         $this->assertSame($expected, $qb->toString());
@@ -65,6 +65,6 @@ class OrderByTest extends PHPUnit_Framework_TestCase
     public function testUnknownOrderByDirection()
     {
         $qb = new Parts\OrderBy();
-        $qb->orderBy('poney', 'burger');
+        $qb->addOrderBy('poney', 'burger');
     }
 }

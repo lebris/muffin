@@ -18,7 +18,7 @@ class OrderBy implements PartBuilder
         $this->orders = array();
     }
 
-    public function orderBy($column, $direction = self::ASC)
+    public function addOrderBy($column, $direction = self::ASC)
     {
         $this->validateDirection($direction);
 
