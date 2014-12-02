@@ -38,6 +38,8 @@ class EqualTest extends PHPUnit_Framework_TestCase
             'simple datetime'    => array("date = '2014-03-07 14:18:42'", 'date', new Types\Datetime('2014-03-07 14:18:42')),
             'empty datetime'     => array("date = ''", 'date', new Types\Datetime('')),
 
+            'float'    => array("rank = 13.37", 'rank', new Types\Float(13.37)),
+
             'empty column name' => array('', '', new Types\String('poney')),
         );
     }
