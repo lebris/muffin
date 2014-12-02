@@ -28,6 +28,6 @@ abstract class AbstractCondition implements Condition
             }
         }
 
-        throw new \RuntimeException(sprintf("Unkown method %s", $method));
+        throw new \LogicException(sprintf("Unkown method %s", $method));
     }
 }
