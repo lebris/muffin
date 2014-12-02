@@ -17,7 +17,9 @@ class Select implements Query
         $conditions,
         $select,
         $joins,
-        $from;
+        $from,
+        $where,
+        $limit;
 
     public function __construct($columns = null)
     {
@@ -35,6 +37,7 @@ class Select implements Query
             $this->buildFrom(),
             $this->buildJoin(),
             $this->buildWhere(),
+            $this->buildLimit(),
         );
 
         return implode(' ', array_filter($queryParts));
@@ -98,6 +101,13 @@ class Select implements Query
         return $this;
     }
 
+    public function limit($limit, $offset = null)
+    {
+        $this->limit = new Parts\Limit($limit, $offset);
+
+        return $this;
+    }
+
     /**
      * @return Parts\InnerJoin
      */
@@ -133,6 +143,14 @@ class Select implements Query
         $this->where->setEscaper($this->escaper);
 
         return $this->where->toString();
+    }
+
+    private function buildLimit()
+    {
+        if($this->limit instanceof Parts\Limit)
+        {
+            return $this->limit->toString();
+        }
     }
 
     private function buildJoin()

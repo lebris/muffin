@@ -169,4 +169,29 @@ class SelectTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("SELECT id FROM poney AS p INNER JOIN taste AS t ON p.taste_id = t.id RIGHT JOIN country AS c ON c.country_id = c.id LEFT JOIN unicorn USING (code) WHERE name = 'burger'", $query->toString($this->escaper));
     }
+
+    public function testLimit()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+            ->limit(42)
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' LIMIT 42", $query->toString($this->escaper));
+
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+            ->limit(42, 1337)
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' LIMIT 1337, 42", $query->toString($this->escaper));
+    }
 }
