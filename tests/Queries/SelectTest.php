@@ -182,7 +182,10 @@ class SelectTest extends PHPUnit_Framework_TestCase
         ;
 
         $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' LIMIT 42", $query->toString($this->escaper));
+    }
 
+    public function testLimitWithOffset()
+    {
         $query = (new Queries\Select())->setEscaper($this->escaper);
 
         $query
