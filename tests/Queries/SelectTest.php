@@ -83,6 +83,17 @@ class SelectTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException \LogicException
      */
+    public function testSelectWithoutSelectingColumns()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+        $query->from('poney');
+
+        $query->toString();
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
     public function testJoinWrongSynthax()
     {
         $query = (new Queries\Select())->setEscaper($this->escaper);

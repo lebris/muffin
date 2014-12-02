@@ -25,6 +25,11 @@ class Select implements PartBuilder
 
     public function toString()
     {
+        if(empty($this->columns))
+        {
+            throw new \LogicException('No columns defined for SELECT clause');
+        }
+
         return sprintf('SELECT %s', implode(', ', $this->columns));
     }
 
