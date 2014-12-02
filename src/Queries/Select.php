@@ -14,7 +14,6 @@ class Select implements Query
     use EscaperAware;
 
     private
-        $conditions,
         $select,
         $joins,
         $from,
