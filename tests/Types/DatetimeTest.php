@@ -27,6 +27,7 @@ class DatetimeTest extends PHPUnit_Framework_TestCase
     {
         return array(
             'string' => array('2014-12-10 13:37:42', '2014-12-10 13:37:42'),
+            'empty value' => array('', ''),
             'datetime #1' => array('2014-12-10 13:37:42', \DateTime::createFromFormat('Y-m-d H:i:s', '2014-12-10 13:37:42')),
         );
     }
