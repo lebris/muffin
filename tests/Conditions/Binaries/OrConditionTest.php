@@ -14,26 +14,6 @@ class OrConditionTest extends PHPUnit_Framework_TestCase
         $this->escaper = new SimpleEscaper();
     }
 
-    public function testHelper()
-    {
-        $condition = (new Conditions\Equal('name', new Types\String('rainbow')))
-            ->or(
-                (new Conditions\Equal('taste', new Types\String('burger')))
-                ->and(new Conditions\Equal('rank', new Types\Integer(42)))
-            );
-
-        $this->assertSame($condition->toString($this->escaper), "name = 'rainbow' OR (taste = 'burger' AND rank = 42)");
-    }
-
-    /**
-     * @expectedException \LogicException
-     */
-    public function testTypoInHelperName()
-    {
-        $condition = new Conditions\Equal('taste', new Types\String('burger'));
-        $condition->ro(new Conditions\Equal('taste', new Types\String('vegetable')));
-    }
-
     /**
      * @dataProvider providerTestOrCondition
      */

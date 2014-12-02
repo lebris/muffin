@@ -26,6 +26,8 @@ abstract class AbstractCondition implements Condition
             {
                 return $this->$method($arguments[0]);
             }
+
+            throw new \RuntimeException(sprintf("Missing parameter 1 for %s", $method));
         }
 
         throw new \LogicException(sprintf("Unkown method %s", $method));

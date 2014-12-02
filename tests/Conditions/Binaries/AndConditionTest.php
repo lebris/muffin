@@ -14,26 +14,6 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
         $this->escaper = new SimpleEscaper();
     }
 
-    public function testHelper()
-    {
-        $condition = (new Conditions\Equal('name', new Types\String('rainbow')))
-            ->and(
-                (new Conditions\Equal('taste', new Types\String('burger')))
-                ->or(new Conditions\Equal('rank', new Types\Integer(42)))
-            );
-
-        $this->assertSame($condition->toString($this->escaper), "name = 'rainbow' AND (taste = 'burger' OR rank = 42)");
-    }
-
-    /**
-     * @expectedException \LogicException
-     */
-    public function testTypoInHelperName()
-    {
-        $condition = new Conditions\Equal('taste', new Types\String('burger'));
-        $condition->adn(new Conditions\Equal('taste', new Types\String('vegetable')));
-    }
-
     /**
      * @dataProvider providerTestAndCondition
      */
