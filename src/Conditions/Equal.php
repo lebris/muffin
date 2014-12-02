@@ -4,13 +4,10 @@ namespace Mdd\QueryBuilder\Conditions;
 
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Type;
-use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Escaper;
 
 class Equal extends AbstractCondition
 {
-    use EscaperAware;
-
     private
         $column,
         $type;
