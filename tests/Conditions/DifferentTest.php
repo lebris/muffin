@@ -34,6 +34,9 @@ class DifferentTest extends PHPUnit_Framework_TestCase
             'simple int' => array("id != 42", 'id', new Types\Integer(42)),
             'empty int' => array("id != 0", 'id', new Types\Integer('')),
 
+            'simple datetime' => array("date != '2014-12-01 13:37:42'", 'date', new Types\Datetime('2014-12-01 13:37:42')),
+            'empty datetime' => array("date != ''", 'date', new Types\Datetime('')),
+
             'empty column name' => array('', '', new Types\Integer(42)),
         );
     }
