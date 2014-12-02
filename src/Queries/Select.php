@@ -18,6 +18,7 @@ class Select implements Query
         $joins,
         $from,
         $where,
+        $orderBy,
         $limit;
 
     public function __construct($columns = null)
@@ -25,6 +26,7 @@ class Select implements Query
         $this->select = new Parts\Select();
         $this->joins = array();
         $this->where = new Parts\Where();
+        $this->orderBy = new Parts\OrderBy();
 
         $this->select->select($columns);
     }
@@ -36,6 +38,7 @@ class Select implements Query
             $this->buildFrom(),
             $this->buildJoin(),
             $this->buildWhere(),
+            $this->buildOrderBy(),
             $this->buildLimit(),
         );
 
@@ -100,6 +103,13 @@ class Select implements Query
         return $this;
     }
 
+    public function orderBy($column, $directrion = Parts\OrderBy::ASC)
+    {
+        $this->orderBy->orderBy($column, $directrion);
+
+        return $this;
+    }
+
     public function limit($limit, $offset = null)
     {
         $this->limit = new Parts\Limit($limit, $offset);
@@ -142,6 +152,11 @@ class Select implements Query
         $this->where->setEscaper($this->escaper);
 
         return $this->where->toString();
+    }
+
+    private function buildOrderBy()
+    {
+        return $this->orderBy->toString();
     }
 
     private function buildLimit()
