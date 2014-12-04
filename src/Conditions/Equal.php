@@ -2,7 +2,6 @@
 
 namespace Mdd\QueryBuilder\Conditions;
 
-use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Escaper;
 
