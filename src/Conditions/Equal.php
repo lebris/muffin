@@ -5,12 +5,10 @@ namespace Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Escaper;
 
-class Equal extends AbstractCondition
+class Equal extends AbstractComparisonOperatorCondition
 {
-    protected function buildConditionString(Escaper $escaper)
+    protected function getConditionOperator()
     {
-        $value = $this->escapeValue($this->type->getValue(), $escaper);
-
-        return sprintf('%s = %s', $this->column, $value);
+        return '=';
     }
 }

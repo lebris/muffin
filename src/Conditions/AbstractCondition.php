@@ -44,26 +44,4 @@ abstract class AbstractCondition implements Condition
 
         throw new \LogicException(sprintf("Unkown method %s", $method));
     }
-
-    public function toString(Escaper $escaper)
-    {
-        if(empty($this->column))
-        {
-            return '';
-        }
-
-        return $this->buildConditionString($escaper);
-    }
-
-    abstract protected function buildConditionString(Escaper $escaper);
-
-    protected function escapeValue($value, Escaper $escaper)
-    {
-        if($this->type->isEscapeRequired())
-        {
-            $value = $escaper->escape($value);
-        }
-
-        return $value;
-    }
 }

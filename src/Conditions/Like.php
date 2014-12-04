@@ -5,17 +5,10 @@ namespace Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Escaper;
 
-class Like extends AbstractCondition
+class Like extends AbstractComparisonOperatorCondition
 {
-    protected function buildConditionString(Escaper $escaper)
+    protected function getConditionOperator()
     {
-        $value = $this->escapeValue($this->type->getValue(), $escaper);
-
-        if(empty($this->column))
-        {
-            return '';
-        }
-
-        return sprintf('%s LIKE %s', $this->column, $value);
+        return 'LIKE';
     }
 }
