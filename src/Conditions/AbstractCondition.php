@@ -3,9 +3,21 @@
 namespace Mdd\QueryBuilder\Conditions;
 
 use Mdd\QueryBuilder\Condition;
+use Mdd\QueryBuilder\Escaper;
+use Mdd\QueryBuilder\Type;
 
 abstract class AbstractCondition implements Condition
 {
+    protected
+        $column,
+        $type;
+
+    public function __construct($column, Type $type)
+    {
+        $this->column = (string) $column;
+        $this->type = $type;
+    }
+
     public function _and(Condition $condition)
     {
         return new Binaries\AndCondition($this, $condition);
@@ -31,5 +43,27 @@ abstract class AbstractCondition implements Condition
         }
 
         throw new \LogicException(sprintf("Unkown method %s", $method));
+    }
+
+    public function toString(Escaper $escaper)
+    {
+        if(empty($this->column))
+        {
+            return '';
+        }
+
+        return $this->buildConditionString($escaper);
+    }
+
+    abstract protected function buildConditionString(Escaper $escaper);
+
+    protected function escapeValue($value, Escaper $escaper)
+    {
+        if($this->type->isEscapeRequired())
+        {
+            $value = $escaper->escape($value);
+        }
+
+        return $value;
     }
 }

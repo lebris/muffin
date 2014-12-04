@@ -7,9 +7,6 @@ use Mdd\QueryBuilder\Escaper;
 
 class IsNull extends AbstractCondition
 {
-    private
-        $column;
-
     public function __construct($column)
     {
         $this->column = (string) $column;
@@ -23,5 +20,10 @@ class IsNull extends AbstractCondition
         }
 
         return sprintf('%s IS NULL', $this->column);
+    }
+
+    protected function buildConditionString(Escaper $escaper)
+    {
+
     }
 }

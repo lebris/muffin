@@ -7,17 +7,7 @@ use Mdd\QueryBuilder\Type;
 
 class Different extends AbstractCondition
 {
-    private
-        $column,
-        $type;
-
-    public function __construct($column, Type $type)
-    {
-        $this->column = (string) $column;
-        $this->type = $type;
-    }
-
-    public function toString(Escaper $escaper)
+    protected function buildConditionString(Escaper $escaper)
     {
         $value = $this->escapeValue($this->type->getValue(), $escaper);
 
@@ -27,15 +17,5 @@ class Different extends AbstractCondition
         }
 
         return sprintf('%s != %s', $this->column, $value);
-    }
-
-    private function escapeValue($value, Escaper $escaper)
-    {
-        if($this->type->isEscapeRequired())
-        {
-            $value = $escaper->escape($value);
-        }
-
-        return $value;
     }
 }
