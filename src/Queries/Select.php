@@ -127,9 +127,6 @@ class Select implements Query
         return $this;
     }
 
-    /**
-     * @return Parts\InnerJoin
-     */
     private function getLastJoin()
     {
         $lastJoins = end($this->joins);
