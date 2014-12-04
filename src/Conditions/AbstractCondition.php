@@ -3,7 +3,6 @@
 namespace Mdd\QueryBuilder\Conditions;
 
 use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Escaper;
 use Mdd\QueryBuilder\Type;
 
 abstract class AbstractCondition implements Condition
