@@ -2,7 +2,6 @@
 
 namespace Mdd\QueryBuilder\Conditions\Binaries;
 
-use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Escaper;
 
 class OrCondition extends AbstractCompositeCondition

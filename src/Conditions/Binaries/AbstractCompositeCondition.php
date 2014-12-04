@@ -4,7 +4,6 @@ namespace Mdd\QueryBuilder\Conditions\Binaries;
 
 use Mdd\QueryBuilder\Conditions\CompositeCondition;
 use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Escaper;
 
 abstract class AbstractCompositeCondition implements CompositeCondition
