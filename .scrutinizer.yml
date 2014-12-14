@@ -3,6 +3,9 @@ tools:
     php_pdepend: true
     php_analyzer: true
     php_mess_detector: true
+    php_loc: true
+        enabled: true
+        excluded_dirs: ["tests", "vendor"]
 filter:
     excluded_paths:
         - 'tests/*'
