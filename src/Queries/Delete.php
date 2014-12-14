@@ -6,10 +6,13 @@ use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Queries\Parts\Joinable;
 
 class Delete implements Query
 {
-    use EscaperAware;
+    use
+        EscaperAware,
+        Joinable;
 
     private
         $from,
@@ -30,6 +33,7 @@ class Delete implements Query
         $queryParts = array(
             'DELETE',
             $this->buildFrom(),
+            $this->buildJoin(),
             $this->buildWhere(),
         );
 
