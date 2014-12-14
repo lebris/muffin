@@ -37,4 +37,20 @@ class InsertTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("INSERT INTO burger (id, name, date, score) VALUES (666, 'poney', '2017-03-07 13:37:42', 13.37), (667, 'unicorn', '2017-03-07 13:42:59', 14.18)", $query->toString($this->escaper));
     }
+
+    public function testInsertUsingHelper()
+    {
+        $query = (new Queries\Insert())->setEscaper($this->escaper);
+
+        $query
+            ->insert('burger')
+            ->values(array(
+                'id' => 666,
+                'name' => 'poney',
+                'date' => \Datetime::createFromFormat('Y-m-d H:i:s', '2017-03-07 13:37:42'),
+                'score' => 13.37,
+            ));
+
+        $this->assertSame("INSERT INTO burger (id, name, date, score) VALUES (666, 'poney', '2017-03-07 13:37:42', 13.37)", $query->toString($this->escaper));
+    }
 }

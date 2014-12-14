@@ -16,7 +16,7 @@ class Insert implements Query
         $insertPart,
         $valuesPart;
 
-    public function __construct($table)
+    public function __construct($table = null)
     {
         $this->valuesPart = new Parts\Values();
 
