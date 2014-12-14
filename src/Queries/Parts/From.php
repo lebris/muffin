@@ -9,14 +9,14 @@ class From implements PartBuilder
     private
         $tableName;
 
-    public function __construct($tableName, $alias = null)
+    public function __construct($table, $alias = null)
     {
-        if(empty($tableName))
+        if(! $table instanceof TableName)
         {
-            throw new \InvalidArgumentException('Empty table name.');
+            $table = new TableName($table, $alias);
         }
 
-        $this->tableName = new TableName($tableName, $alias);
+        $this->tableName = $table;
     }
 
     public function toString()

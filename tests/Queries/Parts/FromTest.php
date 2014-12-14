@@ -25,6 +25,15 @@ class FromTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testFromUsingTableNamePart()
+    {
+        $tableName = new Parts\TableName('unicorns', 'u');
+
+        $qb = new Parts\From($tableName);
+
+        $this->assertSame($qb->toString(), 'FROM unicorns AS u');
+    }
+
     /**
      * @dataProvider providerTestEmptyTableName
      * @expectedException \InvalidArgumentException
