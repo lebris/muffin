@@ -4,7 +4,6 @@ namespace Mdd\QueryBuilder\Queries;
 
 use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Escaper;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\PartBuilder;
 
