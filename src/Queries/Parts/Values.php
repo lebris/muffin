@@ -22,13 +22,15 @@ class Values implements PartBuilder
 
         if(! empty($values))
         {
-            $this->addValues($values);
+            $this->values($values);
         }
     }
 
-    private function addValues(array $values)
+    public function values(array $values)
     {
         $this->values[] = $values;
+
+        return $this;
     }
 
     public function toString()
@@ -43,6 +45,11 @@ class Values implements PartBuilder
         $values = array();
         foreach($this->values as $valuesSet)
         {
+            if($columnsNameList !== array_keys($valuesSet))
+            {
+                throw new \RuntimeException('Cannot insert different schema on the same table.');
+            }
+
             $values[] = $this->buildValuesSetString($valuesSet);
         }
 
