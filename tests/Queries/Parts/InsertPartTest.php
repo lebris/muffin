@@ -2,7 +2,7 @@
 
 use Mdd\QueryBuilder\Queries\Parts;
 
-class InsertTest extends PHPUnit_Framework_TestCase
+class InsertPartTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerTestInsert
