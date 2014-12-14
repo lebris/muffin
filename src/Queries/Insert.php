@@ -3,10 +3,7 @@
 namespace Mdd\QueryBuilder\Queries;
 
 use Mdd\QueryBuilder\Query;
-use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
-use Mdd\QueryBuilder\PartBuilder;
-use Mdd\QueryBuilder\Queries\Parts\TableName;
 
 class Insert implements Query
 {
