@@ -26,7 +26,7 @@ class Update implements Query
 
         if(! empty($table))
         {
-            $this->update($table, $alias = null);
+            $this->update($table, $alias);
         }
     }
 

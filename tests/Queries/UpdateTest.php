@@ -58,7 +58,7 @@ class UpdateTest extends PHPUnit_Framework_TestCase
             ->set(array('date' => '2014-03-07 13:37:42'))
         ;
 
-        $this->assertSame("UPDATE burger INNER JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
+        $this->assertSame("UPDATE burger AS b INNER JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
 
         $query = (new Queries\Update('burger', 'b'))->setEscaper($this->escaper);
 
@@ -67,7 +67,7 @@ class UpdateTest extends PHPUnit_Framework_TestCase
             ->set(array('date' => '2014-03-07 13:37:42'))
         ;
 
-        $this->assertSame("UPDATE burger LEFT JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
+        $this->assertSame("UPDATE burger AS b LEFT JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
 
         $query = (new Queries\Update('burger', 'b'))->setEscaper($this->escaper);
 
@@ -76,7 +76,7 @@ class UpdateTest extends PHPUnit_Framework_TestCase
             ->set(array('date' => '2014-03-07 13:37:42'))
         ;
 
-        $this->assertSame("UPDATE burger RIGHT JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
+        $this->assertSame("UPDATE burger AS b RIGHT JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
     }
 
     public function testUpdateMultipleTable()
