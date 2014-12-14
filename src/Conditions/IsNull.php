@@ -20,9 +20,4 @@ class IsNull extends AbstractCondition
 
         return sprintf('%s IS NULL', $this->column);
     }
-
-    protected function buildConditionString(Escaper $escaper)
-    {
-
-    }
 }
