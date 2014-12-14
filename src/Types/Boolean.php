@@ -11,6 +11,6 @@ class Boolean extends AbstractType
 
     protected function format($value)
     {
-        return (int) boolval($value);
+        return (int) ((bool) $value);
     }
 }
