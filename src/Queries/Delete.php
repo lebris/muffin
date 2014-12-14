@@ -15,8 +15,13 @@ class Delete implements Query
         $from,
         $where;
 
-    public function __construct()
+    public function __construct($table = null, $alias = null)
     {
+        if(!empty($table))
+        {
+            $this->from($table, $alias);
+        }
+
         $this->where = new Parts\Where();
     }
 

@@ -26,4 +26,15 @@ class DeleteTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("DELETE FROM burger WHERE type = 'healthy'", $query->toString($this->escaper));
     }
+
+    public function testDeleteUsingConstructor()
+    {
+        $query = (new Queries\Delete('burger', 'b'))->setEscaper($this->escaper);
+
+        $query
+            ->where(new Conditions\Equal('type', new Types\String('healthy')))
+        ;
+
+        $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy'", $query->toString($this->escaper));
+    }
 }
