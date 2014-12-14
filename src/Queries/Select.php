@@ -11,11 +11,11 @@ use Mdd\QueryBuilder\PartBuilder;
 
 class Select implements Query
 {
+    use Parts\Joinable;
     use EscaperAware;
 
     private
         $select,
-        $joins,
         $from,
         $where,
         $orderBy,
@@ -25,7 +25,6 @@ class Select implements Query
     public function __construct($columns = null)
     {
         $this->select = new Parts\Select();
-        $this->joins = array();
         $this->where = new Parts\Where();
         $this->groupBy = new Parts\GroupBy();
         $this->orderBy = new Parts\OrderBy();
@@ -58,35 +57,6 @@ class Select implements Query
     public function select($columns)
     {
         $this->select->select($columns);
-
-        return $this;
-    }
-
-    public function innerJoin($table, $alias = null)
-    {
-        $this->joins[] = new Parts\Joins\InnerJoin($table, $alias);
-
-        return $this;
-    }
-
-    public function leftJoin($table, $alias = null)
-    {
-        $this->joins[] = new Parts\Joins\LeftJoin($table, $alias);
-
-        return $this;
-    }
-
-    public function rightJoin($table, $alias = null)
-    {
-        $this->joins[] = new Parts\Joins\RightJoin($table, $alias);
-
-        return $this;
-    }
-
-    public function on($leftColumn, $rightColumn)
-    {
-        $join = $this->getLastJoin();
-        $join->on($leftColumn, $rightColumn);
 
         return $this;
     }
@@ -127,18 +97,6 @@ class Select implements Query
         return $this;
     }
 
-    private function getLastJoin()
-    {
-        $lastJoins = end($this->joins);
-
-        if(! $lastJoins instanceof Parts\Join)
-        {
-            throw new \LogicException('Erreur dans la récupération de la dernière jointure');
-        }
-
-        return $lastJoins;
-    }
-
     private function buildSelect()
     {
         return $this->select->toString();
@@ -177,17 +135,5 @@ class Select implements Query
         {
             return $this->limit->toString();
         }
-    }
-
-    private function buildJoin()
-    {
-        $joins = array();
-
-        foreach($this->joins as $innerJoin)
-        {
-            $joins[] = $innerJoin->toString();
-        }
-
-        return implode(' ', $joins);
     }
 }

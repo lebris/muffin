@@ -10,6 +10,7 @@ use Mdd\QueryBuilder\PartBuilder;
 
 class Update implements Query
 {
+    use Parts\Joinable;
     use EscaperAware;
 
     private
@@ -33,6 +34,7 @@ class Update implements Query
     {
         $queryParts = array(
             $this->buildUpdate(),
+            $this->buildJoin(),
             $this->buildSets(),
             $this->buildWhere(),
         );

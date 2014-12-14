@@ -15,7 +15,7 @@ class UpdateTest extends PHPUnit_Framework_TestCase
         $this->escaper = new SimpleEscaper();
     }
 
-    public function testSimpleUpdateUsingConstructor()
+    public function testUpdateUsingConstructor()
     {
         $query = (new Queries\Update('burger'))->setEscaper($this->escaper);
 
@@ -24,6 +24,8 @@ class UpdateTest extends PHPUnit_Framework_TestCase
             ->set(array('vegan' => new Types\Boolean(false)))
             ->set(array('name' => 'The big one'))
         ;
+
+        $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one'", $query->toString($this->escaper));
 
         $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one'", $query->toString($this->escaper));
 
@@ -45,6 +47,36 @@ class UpdateTest extends PHPUnit_Framework_TestCase
         ;
 
         $this->assertSame("UPDATE burger SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
+    }
+
+    public function testUpdateWithJoin()
+    {
+        $query = (new Queries\Update('burger', 'b'))->setEscaper($this->escaper);
+
+        $query
+            ->innerjoin('taste', 't')->on('b.taste_id', 't.id')
+            ->set(array('date' => '2014-03-07 13:37:42'))
+        ;
+
+        $this->assertSame("UPDATE burger INNER JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
+
+        $query = (new Queries\Update('burger', 'b'))->setEscaper($this->escaper);
+
+        $query
+            ->leftJoin('taste', 't')->on('b.taste_id', 't.id')
+            ->set(array('date' => '2014-03-07 13:37:42'))
+        ;
+
+        $this->assertSame("UPDATE burger LEFT JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
+
+        $query = (new Queries\Update('burger', 'b'))->setEscaper($this->escaper);
+
+        $query
+            ->rightJoin('taste', 't')->on('b.taste_id', 't.id')
+            ->set(array('date' => '2014-03-07 13:37:42'))
+        ;
+
+        $this->assertSame("UPDATE burger RIGHT JOIN taste AS t ON b.taste_id = t.id SET date = '2014-03-07 13:37:42'", $query->toString($this->escaper));
     }
 
     public function testUpdateMultipleTable()
