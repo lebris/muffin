@@ -22,14 +22,14 @@ class Insert implements Query
 
         if(! empty($table))
         {
-            $this->insertPart = new Parts\Insert($table);
+            $this->insertPart = new Parts\TableName($table);
         }
     }
 
     public function toString()
     {
         $queryParts = array(
-            $this->insertPart->toString(),
+            $this->buildInsertString(),
             $this->buildValuesString(),
         );
 
@@ -38,7 +38,7 @@ class Insert implements Query
 
     public function insert($table)
     {
-        $this->insertPart = new Parts\Insert($table);
+        $this->insertPart = new Parts\TableName($table);
 
         return $this;
     }
@@ -48,6 +48,11 @@ class Insert implements Query
         $this->valuesPart->values($values);
 
         return $this;
+    }
+
+    private function buildInsertString()
+    {
+        return sprintf('INSERT INTO %s', $this->insertPart->toString());
     }
 
     private function buildValuesString()
