@@ -14,12 +14,12 @@ class Select implements Query
         EscaperAware,
         Builders\Join,
         Builders\OrderBy,
+        Builders\Where,
         Builders\Limit;
 
     private
         $select,
         $from,
-        $where,
         $groupBy;
 
     public function __construct($columns = null)
@@ -69,13 +69,6 @@ class Select implements Query
         return $this;
     }
 
-    public function where(Condition $condition)
-    {
-        $this->where->where($condition);
-
-        return $this;
-    }
-
     public function groupBy($column)
     {
         $this->groupBy->addGroupBy($column);
@@ -96,13 +89,6 @@ class Select implements Query
         }
 
         return $this->from->toString();
-    }
-
-    private function buildWhere()
-    {
-        $this->where->setEscaper($this->escaper);
-
-        return $this->where->toString();
     }
 
     private function buildGroupBy()
