@@ -38,6 +38,14 @@ trait Join
         return $this;
     }
 
+    public function using($column)
+    {
+        $join = $this->getLastJoin();
+        $join->using($column);
+
+        return $this;
+    }
+
     protected function buildJoin()
     {
         $joins = array();

@@ -61,14 +61,6 @@ class Select implements Query
         return $this;
     }
 
-    public function using($column)
-    {
-        $join = $this->getLastJoin();
-        $join->using($column);
-
-        return $this;
-    }
-
     private function buildSelect()
     {
         return $this->select->toString();
