@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testSelectViaConstructor($expected, $columns)
     {
-        $select = new Parts\Select($columns);
+        $select = new Snippets\Select($columns);
 
         $this->assertSame($expected, $select->toString());
     }
@@ -19,7 +19,7 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testSelectViaSetter($expected, $columns)
     {
-        $select = new Parts\Select();
+        $select = new Snippets\Select();
         $select->select($columns);
 
         $this->assertSame($expected, $select->toString());
@@ -37,7 +37,7 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testAddColumnsOnTheFly()
     {
-        $select = new Parts\Select('id');
+        $select = new Snippets\Select('id');
         $select
             ->select('name')
             ->select(array('color', 'taste'));
@@ -50,7 +50,7 @@ class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidColumnName()
     {
-        $select = new Parts\Select(array('poney', new stdClass()));
+        $select = new Snippets\Select(array('poney', new stdClass()));
 
         $select->toString();
     }

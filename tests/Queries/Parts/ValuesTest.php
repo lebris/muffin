@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 
 class ValuesTest extends PHPUnit_Framework_TestCase
@@ -18,7 +18,7 @@ class ValuesTest extends PHPUnit_Framework_TestCase
      */
     public function testValues($expected, array $values)
     {
-        $part = new Parts\Values($values);
+        $part = new Snippets\Values($values);
 
         $part->setEscaper($this->escaper);
 
@@ -39,7 +39,7 @@ class ValuesTest extends PHPUnit_Framework_TestCase
 
     public function testValuesMultipleSet()
     {
-        $part = new Parts\Values();
+        $part = new Snippets\Values();
 
         $part
             ->values(array(
@@ -62,7 +62,7 @@ class ValuesTest extends PHPUnit_Framework_TestCase
      */
     public function testValuesMultipleSetDifferentColumns()
     {
-        $part = new Parts\Values();
+        $part = new Snippets\Values();
 
         $part
             ->values(array(
@@ -85,7 +85,7 @@ class ValuesTest extends PHPUnit_Framework_TestCase
      */
     public function testNoValues()
     {
-        $part = new Parts\Values(array());
+        $part = new Snippets\Values(array());
 
         $part->setEscaper($this->escaper);
 

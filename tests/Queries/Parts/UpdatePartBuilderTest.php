@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class UpdatePartBuilderTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class UpdatePartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdate($expected, $tableName, $alias)
     {
-        $qb = new Parts\Update($tableName, $alias);
+        $qb = new Snippets\Update($tableName, $alias);
 
         $this->assertSame($qb->toString(), $expected);
     }
@@ -27,16 +27,16 @@ class UpdatePartBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testUpdateUsingTableNamePart()
     {
-        $tableName = new Parts\TableName('ponyz', 'p');
+        $tableName = new Snippets\TableName('ponyz', 'p');
 
-        $qb = new Parts\Update($tableName);
+        $qb = new Snippets\Update($tableName);
 
         $this->assertSame($qb->toString(), 'UPDATE ponyz AS p');
     }
 
     public function testUpdateAddTable()
     {
-        $qb = new Parts\Update('ponyz', 'p');
+        $qb = new Snippets\Update('ponyz', 'p');
 
         $qb
             ->addTable('burger', 'b')
@@ -52,7 +52,7 @@ class UpdatePartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyTableNameUsingSetter($expected, $tableName)
     {
-        $qb = new Parts\Update();
+        $qb = new Snippets\Update();
 
         $qb->addTable($tableName);
 
@@ -64,7 +64,7 @@ class UpdatePartBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyTableNameUsingConstructor($expected, $tableName)
     {
-        $qb = new Parts\Update($tableName);
+        $qb = new Snippets\Update($tableName);
 
         $this->assertSame($expected, $qb->toString());
     }

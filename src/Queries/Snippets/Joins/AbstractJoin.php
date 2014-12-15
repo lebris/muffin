@@ -1,10 +1,10 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Parts\Joins;
+namespace Mdd\QueryBuilder\Queries\Snippets\Joins;
 
 use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Queries\Parts\Join;
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets\Join;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 abstract class AbstractJoin implements Join, Snippet
 {
@@ -16,7 +16,7 @@ abstract class AbstractJoin implements Join, Snippet
 
     public function __construct($table, $alias = null)
     {
-        $this->table = new Parts\TableName($table, $alias);
+        $this->table = new Snippets\TableName($table, $alias);
         $this->on = array();
 
         if(!empty($alias))
@@ -29,7 +29,7 @@ abstract class AbstractJoin implements Join, Snippet
     {
         $this->on = array();
 
-        $this->using = new Parts\Using($column);
+        $this->using = new Snippets\Using($column);
 
         return $this;
     }
@@ -37,7 +37,7 @@ abstract class AbstractJoin implements Join, Snippet
     public function on($leftColumn, $rightColumn)
     {
         $this->using = null;
-        $this->on[] = new Parts\On($leftColumn, $rightColumn);
+        $this->on[] = new Snippets\On($leftColumn, $rightColumn);
 
         return $this;
     }

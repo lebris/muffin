@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Parts;
+namespace Mdd\QueryBuilder\Queries\Snippets;
 
 trait Joinable
 {

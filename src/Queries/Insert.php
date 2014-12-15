@@ -15,11 +15,11 @@ class Insert implements Query
 
     public function __construct($table = null)
     {
-        $this->valuesPart = new Parts\Values();
+        $this->valuesPart = new Snippets\Values();
 
         if(! empty($table))
         {
-            $this->insertPart = new Parts\TableName($table);
+            $this->insertPart = new Snippets\TableName($table);
         }
     }
 
@@ -35,7 +35,7 @@ class Insert implements Query
 
     public function insert($table)
     {
-        $this->insertPart = new Parts\TableName($table);
+        $this->insertPart = new Snippets\TableName($table);
 
         return $this;
     }

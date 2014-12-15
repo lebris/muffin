@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class DeletePartTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class DeletePartTest extends PHPUnit_Framework_TestCase
      */
     public function testDeleteViaConstructor($expected, $columns)
     {
-        $select = new Parts\Delete($columns);
+        $select = new Snippets\Delete($columns);
 
         $this->assertSame($expected, $select->toString());
     }

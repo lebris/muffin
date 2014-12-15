@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class TableNameTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class TableNameTest extends PHPUnit_Framework_TestCase
      */
     public function testTableName($expected, $tableName, $alias)
     {
-        $qb = new Parts\TableName($tableName, $alias);
+        $qb = new Snippets\TableName($tableName, $alias);
 
         $this->assertSame($qb->toString(), $expected);
     }
@@ -30,7 +30,7 @@ class TableNameTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyTableName($tableName)
     {
-        $qb = new Parts\TableName($tableName);
+        $qb = new Snippets\TableName($tableName);
 
         $qb->toString($tableName);
     }

@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class UsingTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class UsingTest extends PHPUnit_Framework_TestCase
      */
     public function testUsing($expected, $columns)
     {
-        $part = new Parts\Using($columns);
+        $part = new Snippets\Using($columns);
 
         $this->assertSame($expected, $part->toString());
     }

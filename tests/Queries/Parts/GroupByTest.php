@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class GroupByTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class GroupByTest extends PHPUnit_Framework_TestCase
      */
     public function testGroupBy($expected, array $groupBy)
     {
-        $qb = new Parts\GroupBy();
+        $qb = new Snippets\GroupBy();
 
         foreach($groupBy as $column)
         {

@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class LimitTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
      */
     public function testLimit($expected, $limit, $offset)
     {
-        $qb = new Parts\Limit($limit, $offset);
+        $qb = new Snippets\Limit($limit, $offset);
 
         $this->assertSame($expected, $qb->toString());
     }

@@ -9,7 +9,7 @@ use Mdd\QueryBuilder\Snippet;
 
 class Update implements Query
 {
-    use Parts\Joinable;
+    use Snippets\Joinable;
     use EscaperAware;
 
     private
@@ -19,9 +19,9 @@ class Update implements Query
 
     public function __construct($table = null, $alias = null)
     {
-        $this->updatePart = new Parts\Update();
-        $this->where = new Parts\Where();
-        $this->sets = new Parts\Set();
+        $this->updatePart = new Snippets\Update();
+        $this->where = new Snippets\Where();
+        $this->sets = new Snippets\Set();
 
         if(! empty($table))
         {

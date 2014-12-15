@@ -1,12 +1,12 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class OrderByTest extends PHPUnit_Framework_TestCase
 {
     public function testDefaultOrderByDirection()
     {
-        $qb = new Parts\OrderBy();
+        $qb = new Snippets\OrderBy();
         $qb->addOrderBy('poney');
 
         $this->assertSame('ORDER BY poney ASC', $qb->toString());
@@ -17,7 +17,7 @@ class OrderByTest extends PHPUnit_Framework_TestCase
      */
     public function testOrderBy($expected, array $orderBy)
     {
-        $qb = new Parts\OrderBy();
+        $qb = new Snippets\OrderBy();
 
         foreach($orderBy as $column => $direction)
         {
@@ -48,7 +48,7 @@ class OrderByTest extends PHPUnit_Framework_TestCase
      */
     public function testUnknownOrderByDirection()
     {
-        $qb = new Parts\OrderBy();
+        $qb = new Snippets\OrderBy();
         $qb->addOrderBy('poney', 'burger');
     }
 }

@@ -9,7 +9,7 @@ use Mdd\QueryBuilder\Snippet;
 
 class Select implements Query
 {
-    use Parts\Joinable;
+    use Snippets\Joinable;
     use EscaperAware;
 
     private
@@ -22,10 +22,10 @@ class Select implements Query
 
     public function __construct($columns = null)
     {
-        $this->select = new Parts\Select();
-        $this->where = new Parts\Where();
-        $this->groupBy = new Parts\GroupBy();
-        $this->orderBy = new Parts\OrderBy();
+        $this->select = new Snippets\Select();
+        $this->where = new Snippets\Where();
+        $this->groupBy = new Snippets\GroupBy();
+        $this->orderBy = new Snippets\OrderBy();
 
         $this->select->select($columns);
     }
@@ -47,7 +47,7 @@ class Select implements Query
 
     public function from($table, $alias = null)
     {
-        $this->from = new Parts\From($table, $alias);
+        $this->from = new Snippets\From($table, $alias);
 
         return $this;
     }
@@ -81,7 +81,7 @@ class Select implements Query
         return $this;
     }
 
-    public function orderBy($column, $directrion = Parts\OrderBy::ASC)
+    public function orderBy($column, $directrion = Snippets\OrderBy::ASC)
     {
         $this->orderBy->addOrderBy($column, $directrion);
 
@@ -90,7 +90,7 @@ class Select implements Query
 
     public function limit($limit, $offset = null)
     {
-        $this->limit = new Parts\Limit($limit, $offset);
+        $this->limit = new Snippets\Limit($limit, $offset);
 
         return $this;
     }
@@ -129,7 +129,7 @@ class Select implements Query
 
     private function buildLimit()
     {
-        if($this->limit instanceof Parts\Limit)
+        if($this->limit instanceof Snippets\Limit)
         {
             return $this->limit->toString();
         }

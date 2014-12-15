@@ -6,7 +6,7 @@ use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Queries\Parts\Joinable;
+use Mdd\QueryBuilder\Queries\Snippets\Joinable;
 
 class Delete implements Query
 {
@@ -25,7 +25,7 @@ class Delete implements Query
             $this->from($table, $alias);
         }
 
-        $this->where = new Parts\Where();
+        $this->where = new Snippets\Where();
     }
 
     public function toString()
@@ -42,7 +42,7 @@ class Delete implements Query
 
     public function from($table, $alias = null)
     {
-        $this->from = new Parts\From($table, $alias);
+        $this->from = new Snippets\From($table, $alias);
 
         return $this;
     }

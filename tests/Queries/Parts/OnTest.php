@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class OnTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class OnTest extends PHPUnit_Framework_TestCase
      */
     public function testOn($expected, $leftColumn, $rightColumn)
     {
-        $part = new Parts\On($leftColumn, $rightColumn);
+        $part = new Snippets\On($leftColumn, $rightColumn);
 
         $this->assertSame($expected, $part->toString());
     }

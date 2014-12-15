@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Parts\Joins;
+namespace Mdd\QueryBuilder\Queries\Snippets\Joins;
 
 use Mdd\QueryBuilder\Snippet;
 

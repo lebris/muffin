@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Parts;
+namespace Mdd\QueryBuilder\Queries\Snippets;
 
 use Mdd\QueryBuilder\Snippet;
 use Mdd\QueryBuilder\Type;

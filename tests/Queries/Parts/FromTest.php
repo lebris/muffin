@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 
 class FromTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +9,7 @@ class FromTest extends PHPUnit_Framework_TestCase
      */
     public function testFrom($expected, $tableName, $alias)
     {
-        $qb = new Parts\From($tableName, $alias);
+        $qb = new Snippets\From($tableName, $alias);
 
         $this->assertSame($qb->toString(), $expected);
     }
@@ -27,9 +27,9 @@ class FromTest extends PHPUnit_Framework_TestCase
 
     public function testFromUsingTableNamePart()
     {
-        $tableName = new Parts\TableName('unicorns', 'u');
+        $tableName = new Snippets\TableName('unicorns', 'u');
 
-        $qb = new Parts\From($tableName);
+        $qb = new Snippets\From($tableName);
 
         $this->assertSame($qb->toString(), 'FROM unicorns AS u');
     }
@@ -40,7 +40,7 @@ class FromTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyTableName($tableName)
     {
-        $qb = new Parts\From($tableName);
+        $qb = new Snippets\From($tableName);
 
         $qb->toString($tableName);
     }

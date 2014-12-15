@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Parts;
+use Mdd\QueryBuilder\Queries\Snippets;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 
@@ -16,7 +16,7 @@ class SetTest extends PHPUnit_Framework_TestCase
 
     public function testSet()
     {
-        $part = new Parts\Set();
+        $part = new Snippets\Set();
         $part->setEscaper($this->escaper);
 
         $part->set(array('name' => 'burger'));
