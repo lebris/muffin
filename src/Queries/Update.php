@@ -12,12 +12,12 @@ class Update implements Query
 {
     use
         EscaperAware,
-        Builders\Join;
+        Builders\Join,
+        Builders\Where;
 
     private
         $updatePart,
-        $sets,
-        $where;
+        $sets;
 
     public function __construct($table = null, $alias = null)
     {
@@ -57,13 +57,6 @@ class Update implements Query
         return $this;
     }
 
-    public function where(Condition $condition)
-    {
-        $this->where->where($condition);
-
-        return $this;
-    }
-
     private function buildUpdate()
     {
         $updateString = $this->updatePart->toString();
@@ -86,12 +79,5 @@ class Update implements Query
         $this->sets->setEscaper($this->escaper);
 
         return $this->sets->toString();
-    }
-
-    private function buildWhere()
-    {
-        $this->where->setEscaper($this->escaper);
-
-        return $this->where->toString();
     }
 }
