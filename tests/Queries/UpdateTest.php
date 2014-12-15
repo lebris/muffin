@@ -40,6 +40,10 @@ class UpdateTest extends PHPUnit_Framework_TestCase
         $query->orderBy('id', OrderBy::DESC);
 
         $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one' WHERE score > 1337 AND author = 'julian' ORDER BY id DESC", $query->toString($this->escaper));
+
+        $query->limit(12);
+
+        $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one' WHERE score > 1337 AND author = 'julian' ORDER BY id DESC LIMIT 12", $query->toString($this->escaper));
     }
 
     public function testSimpleUpdateUsingSetter()

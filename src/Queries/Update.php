@@ -14,7 +14,8 @@ class Update implements Query
         EscaperAware,
         Builders\Join,
         Builders\Where,
-        Builders\OrderBy;
+        Builders\OrderBy,
+        Builders\Limit;
 
     private
         $updatePart,
@@ -41,6 +42,7 @@ class Update implements Query
             $this->buildSets(),
             $this->buildWhere(),
             $this->buildOrderBy(),
+            $this->buildLimit(),
         );
 
         return implode(' ', array_filter($queryParts));
