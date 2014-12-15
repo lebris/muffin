@@ -6,13 +6,13 @@ use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Queries\Snippets\Joinable;
+use Mdd\QueryBuilder\Queries\Snippets\Builders;
 
 class Delete implements Query
 {
     use
         EscaperAware,
-        Joinable;
+        Builders\Join;
 
     private
         $from,

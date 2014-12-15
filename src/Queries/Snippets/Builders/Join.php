@@ -1,29 +1,31 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets;
+namespace Mdd\QueryBuilder\Queries\Snippets\Builders;
 
-trait Joinable
+use Mdd\QueryBuilder\Queries\Snippets;
+
+trait Join
 {
     protected
         $joins = array();
 
     public function innerJoin($table, $alias = null)
     {
-        $this->joins[] = new Joins\InnerJoin($table, $alias);
+        $this->joins[] = new Snippets\Joins\InnerJoin($table, $alias);
 
         return $this;
     }
 
     public function leftJoin($table, $alias = null)
     {
-        $this->joins[] = new Joins\LeftJoin($table, $alias);
+        $this->joins[] = new Snippets\Joins\LeftJoin($table, $alias);
 
         return $this;
     }
 
     public function rightJoin($table, $alias = null)
     {
-        $this->joins[] = new Joins\RightJoin($table, $alias);
+        $this->joins[] = new Snippets\Joins\RightJoin($table, $alias);
 
         return $this;
     }
@@ -52,7 +54,7 @@ trait Joinable
     {
         $lastJoins = end($this->joins);
 
-        if(! $lastJoins instanceof Join)
+        if(! $lastJoins instanceof Snippets\Join)
         {
             throw new \LogicException('Erreur dans la récupération de la dernière jointure');
         }

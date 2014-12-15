@@ -6,11 +6,12 @@ use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Snippet;
+use Mdd\QueryBuilder\Queries\Snippets\Builders;
 
 class Update implements Query
 {
-    use Snippets\Joinable;
-    use EscaperAware;
+    use EscaperAware,
+        Builders\Join;
 
     private
         $updatePart,
