@@ -10,7 +10,8 @@ use Mdd\QueryBuilder\Queries\Snippets\Builders;
 
 class Select implements Query
 {
-    use EscaperAware,
+    use
+        EscaperAware,
         Builders\Join;
 
     private

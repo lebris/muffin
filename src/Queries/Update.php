@@ -10,7 +10,8 @@ use Mdd\QueryBuilder\Queries\Snippets\Builders;
 
 class Update implements Query
 {
-    use EscaperAware,
+    use
+        EscaperAware,
         Builders\Join;
 
     private
