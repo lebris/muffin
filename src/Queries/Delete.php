@@ -13,7 +13,8 @@ class Delete implements Query
     use
         EscaperAware,
         Builders\Join,
-        Builders\Where;
+        Builders\Where,
+        Builders\OrderBy;
 
     private
         $from;
@@ -26,6 +27,7 @@ class Delete implements Query
         }
 
         $this->where = new Snippets\Where();
+        $this->orderBy = new Snippets\OrderBy();
     }
 
     public function toString()
@@ -35,6 +37,7 @@ class Delete implements Query
             $this->buildFrom(),
             $this->buildJoin(),
             $this->buildWhere(),
+            $this->buildOrderBy(),
         );
 
         return implode(' ', array_filter($queryParts));

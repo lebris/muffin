@@ -4,6 +4,7 @@ use Mdd\QueryBuilder\Queries;
 use Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Mdd\QueryBuilder\Queries\Snippets\OrderBy;
 
 class DeleteTest extends PHPUnit_Framework_TestCase
 {
@@ -25,6 +26,10 @@ class DeleteTest extends PHPUnit_Framework_TestCase
         ;
 
         $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy'", $query->toString($this->escaper));
+
+        $query->orderBy('date', OrderBy::DESC);
+
+        $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy' ORDER BY date DESC", $query->toString($this->escaper));
     }
 
     public function testDeleteWithInnerJoin()
