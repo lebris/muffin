@@ -12,11 +12,11 @@ class Delete implements Query
 {
     use
         EscaperAware,
-        Builders\Join;
+        Builders\Join,
+        Builders\Where;
 
     private
-        $from,
-        $where;
+        $from;
 
     public function __construct($table = null, $alias = null)
     {
@@ -47,13 +47,6 @@ class Delete implements Query
         return $this;
     }
 
-    public function where(Condition $condition)
-    {
-        $this->where->where($condition);
-
-        return $this;
-    }
-
     private function buildFrom()
     {
         if(!$this->from instanceof Snippet)
@@ -62,12 +55,5 @@ class Delete implements Query
         }
 
         return $this->from->toString();
-    }
-
-    private function buildWhere()
-    {
-        $this->where->setEscaper($this->escaper);
-
-        return $this->where->toString();
     }
 }
