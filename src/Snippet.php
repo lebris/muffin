@@ -2,7 +2,7 @@
 
 namespace Mdd\QueryBuilder;
 
-interface PartBuilder
+interface Snippet
 {
     public function toString();
 }

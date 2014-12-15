@@ -2,9 +2,9 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
-class Delete implements PartBuilder
+class Delete implements Snippet
 {
     private
         $tableName;

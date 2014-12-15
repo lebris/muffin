@@ -2,11 +2,11 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts\Joins;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 use Mdd\QueryBuilder\Queries\Parts\Join;
 use Mdd\QueryBuilder\Queries\Parts;
 
-abstract class AbstractJoin implements Join, PartBuilder
+abstract class AbstractJoin implements Join, Snippet
 {
     private
     $table,
@@ -60,7 +60,7 @@ abstract class AbstractJoin implements Join, PartBuilder
 
     private function buildUsingConditionClause()
     {
-        if(!$this->using instanceof PartBuilder)
+        if(!$this->using instanceof Snippet)
         {
             return '';
         }
@@ -74,7 +74,7 @@ abstract class AbstractJoin implements Join, PartBuilder
 
         foreach($this->on as $on)
         {
-            if($on instanceof PartBuilder)
+            if($on instanceof Snippet)
             {
                 $conditionClause[] = $on->toString();
             }

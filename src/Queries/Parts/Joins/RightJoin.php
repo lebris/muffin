@@ -2,9 +2,9 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts\Joins;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
-class RightJoin extends AbstractJoin implements PartBuilder
+class RightJoin extends AbstractJoin implements Snippet
 {
     protected function getJoinDeclaration()
     {

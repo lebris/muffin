@@ -2,9 +2,9 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
-class Limit implements PartBuilder
+class Limit implements Snippet
 {
     private
         $limit,

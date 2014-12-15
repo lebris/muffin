@@ -2,9 +2,9 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
-class TableName implements PartBuilder
+class TableName implements Snippet
 {
     private
         $tableName,

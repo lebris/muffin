@@ -2,9 +2,9 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
-class GroupBy implements PartBuilder
+class GroupBy implements Snippet
 {
     private
         $groupBy;

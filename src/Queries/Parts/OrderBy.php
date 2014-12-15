@@ -2,9 +2,9 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
-class OrderBy implements PartBuilder
+class OrderBy implements Snippet
 {
     const
         ASC = 'ASC',

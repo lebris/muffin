@@ -2,13 +2,13 @@
 
 namespace Mdd\QueryBuilder\Queries\Parts;
 
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 
-class Set implements PartBuilder
+class Set implements Snippet
 {
     use EscaperAware;
 

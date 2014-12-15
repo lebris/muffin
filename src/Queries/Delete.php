@@ -5,7 +5,7 @@ namespace Mdd\QueryBuilder\Queries;
 use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 use Mdd\QueryBuilder\Queries\Parts\Joinable;
 
 class Delete implements Query
@@ -56,7 +56,7 @@ class Delete implements Query
 
     private function buildFrom()
     {
-        if(!$this->from instanceof PartBuilder)
+        if(!$this->from instanceof Snippet)
         {
             throw new \LogicException('No column for FROM clause');
         }

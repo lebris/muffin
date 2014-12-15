@@ -5,7 +5,7 @@ namespace Mdd\QueryBuilder\Queries;
 use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
 class Select implements Query
 {
@@ -102,7 +102,7 @@ class Select implements Query
 
     private function buildFrom()
     {
-        if(!$this->from instanceof PartBuilder)
+        if(!$this->from instanceof Snippet)
         {
             throw new \LogicException('No column for FROM clause');
         }

@@ -5,7 +5,7 @@ namespace Mdd\QueryBuilder\Queries;
 use Mdd\QueryBuilder\Query;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
-use Mdd\QueryBuilder\PartBuilder;
+use Mdd\QueryBuilder\Snippet;
 
 class Update implements Query
 {
@@ -76,7 +76,7 @@ class Update implements Query
 
     private function buildSets()
     {
-        if(!$this->sets instanceof PartBuilder)
+        if(!$this->sets instanceof Snippet)
         {
             throw new \LogicException('No column for FROM clause');
         }
