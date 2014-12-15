@@ -4,6 +4,7 @@ use Mdd\QueryBuilder\Queries;
 use Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Mdd\QueryBuilder\Queries\Snippets\OrderBy;
 
 class UpdateTest extends PHPUnit_Framework_TestCase
 {
@@ -35,6 +36,10 @@ class UpdateTest extends PHPUnit_Framework_TestCase
         ;
 
         $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one' WHERE score > 1337 AND author = 'julian'", $query->toString($this->escaper));
+
+        $query->orderBy('id', OrderBy::DESC);
+
+        $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one' WHERE score > 1337 AND author = 'julian' ORDER BY id DESC", $query->toString($this->escaper));
     }
 
     public function testSimpleUpdateUsingSetter()

@@ -13,7 +13,8 @@ class Update implements Query
     use
         EscaperAware,
         Builders\Join,
-        Builders\Where;
+        Builders\Where,
+        Builders\OrderBy;
 
     private
         $updatePart,
@@ -24,6 +25,7 @@ class Update implements Query
         $this->updatePart = new Snippets\Update();
         $this->where = new Snippets\Where();
         $this->sets = new Snippets\Set();
+        $this->orderBy = new Snippets\OrderBy();
 
         if(! empty($table))
         {
@@ -38,6 +40,7 @@ class Update implements Query
             $this->buildJoin(),
             $this->buildSets(),
             $this->buildWhere(),
+            $this->buildOrderBy(),
         );
 
         return implode(' ', array_filter($queryParts));
