@@ -12,15 +12,15 @@ class Select implements Query
 {
     use
         EscaperAware,
-        Builders\Join;
+        Builders\Join,
+        Builders\Limit;
 
     private
         $select,
         $from,
         $where,
         $orderBy,
-        $groupBy,
-        $limit;
+        $groupBy;
 
     public function __construct($columns = null)
     {
@@ -90,13 +90,6 @@ class Select implements Query
         return $this;
     }
 
-    public function limit($limit, $offset = null)
-    {
-        $this->limit = new Snippets\Limit($limit, $offset);
-
-        return $this;
-    }
-
     private function buildSelect()
     {
         return $this->select->toString();
@@ -127,13 +120,5 @@ class Select implements Query
     private function buildOrderBy()
     {
         return $this->orderBy->toString();
-    }
-
-    private function buildLimit()
-    {
-        if($this->limit instanceof Snippets\Limit)
-        {
-            return $this->limit->toString();
-        }
     }
 }
