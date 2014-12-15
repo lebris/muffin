@@ -30,6 +30,10 @@ class DeleteTest extends PHPUnit_Framework_TestCase
         $query->orderBy('date', OrderBy::DESC);
 
         $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy' ORDER BY date DESC", $query->toString($this->escaper));
+
+        $query->limit(12, 5);
+
+        $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy' ORDER BY date DESC LIMIT 5, 12", $query->toString($this->escaper));
     }
 
     public function testDeleteWithInnerJoin()

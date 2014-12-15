@@ -14,7 +14,8 @@ class Delete implements Query
         EscaperAware,
         Builders\Join,
         Builders\Where,
-        Builders\OrderBy;
+        Builders\OrderBy,
+        Builders\Limit;
 
     private
         $from;
@@ -38,6 +39,7 @@ class Delete implements Query
             $this->buildJoin(),
             $this->buildWhere(),
             $this->buildOrderBy(),
+            $this->buildLimit(),
         );
 
         return implode(' ', array_filter($queryParts));
