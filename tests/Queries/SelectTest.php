@@ -216,11 +216,12 @@ class SelectTest extends PHPUnit_Framework_TestCase
             ->where(new Conditions\Equal('name', new Types\String('burger')))
             ->groupBy('taste_id')
             ->groupBy('color')
-            ->limit(42, 1337)
+            ->limit(42)
+            ->offset(1337)
             ->orderBy('poney')
         ;
 
-        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' GROUP BY taste_id, color ORDER BY poney ASC LIMIT 1337, 42", $query->toString($this->escaper));
+        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' GROUP BY taste_id, color ORDER BY poney ASC LIMIT 42 OFFSET 1337", $query->toString($this->escaper));
     }
 
     public function testOrderBy()
@@ -231,11 +232,12 @@ class SelectTest extends PHPUnit_Framework_TestCase
             ->select('id')
             ->from('poney', 'p')
             ->where(new Conditions\Equal('name', new Types\String('burger')))
-            ->limit(42, 1337)
+            ->limit(42)
+            ->offset(1337)
             ->orderBy('poney')
         ;
 
-        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' ORDER BY poney ASC LIMIT 1337, 42", $query->toString($this->escaper));
+        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' ORDER BY poney ASC LIMIT 42 OFFSET 1337", $query->toString($this->escaper));
     }
 
     public function testLimitWithOffset()
@@ -246,9 +248,42 @@ class SelectTest extends PHPUnit_Framework_TestCase
             ->select('id')
             ->from('poney', 'p')
             ->where(new Conditions\Equal('name', new Types\String('burger')))
-            ->limit(42, 1337)
+            ->limit(42)
+            ->offset(1337)
         ;
 
-        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' LIMIT 1337, 42", $query->toString($this->escaper));
+        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger' LIMIT 42 OFFSET 1337", $query->toString($this->escaper));
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testOffsetWithoutLimit()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+            ->offset(666)
+        ;
+
+        $query->toString($this->escaper);
+    }
+
+    public function testOffsetWithEmptyLimit()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->where(new Conditions\Equal('name', new Types\String('burger')))
+            ->limit('')
+            ->offset(666)
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger'", $query->toString($this->escaper));
     }
 }

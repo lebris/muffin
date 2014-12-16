@@ -20,32 +20,36 @@ trait Limit
 
     public function offset($offset)
     {
+        if(!$this->limit instanceof Snippets\Limit)
+        {
+            throw new \LogicException('LIMIT is required to define OFFSET.');
+        }
+
         $this->offset = new Snippets\Offset($offset);
 
         return $this;
     }
 
-    private function buildLimitAndOffset()
+    private function buildLimit()
     {
-        $clause = array(
-            $this->buildLimit(),
-            $this->buildOffsetClause(),
-        );
+        $limit = $this->buildLimitClause();
 
-
-        if(! empty($clause))
+        $offset = '';
+        if(! empty($limit))
         {
-            $clause .= $this->buildOffsetClause();
+            $offset = $this->buildOffsetClause();
         }
 
-        return $clause;
+        $clauses = array($limit, $offset);
+
+        return implode(' ', array_filter($clauses));
     }
 
-    private function buildLimit()
+    private function buildLimitClause()
     {
         if($this->limit instanceof Snippets\Limit)
         {
-            $clause = $this->limit->toString();
+            return $this->limit->toString();
         }
     }
 
@@ -53,7 +57,7 @@ trait Limit
     {
         if($this->offset instanceof Snippets\Offset)
         {
-            return ' ' . $this->offset->toString();
+            return $this->offset->toString();
         }
     }
 }
