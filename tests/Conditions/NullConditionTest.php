@@ -4,6 +4,7 @@ use Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 use Mdd\QueryBuilder\Conditions\Different;
+use Mdd\QueryBuilder\Conditions\Equal;
 
 class NullConditionTest extends PHPUnit_Framework_TestCase
 {
@@ -83,5 +84,20 @@ class NullConditionTest extends PHPUnit_Framework_TestCase
         $condition = $composite->or(new Conditions\NullCondition());
 
         $this->assertSame('poney != 666 AND (response = 42 OR score > 1337)', $condition->toString($this->escaper));
+    }
+
+    public function testConditionIsEmpty()
+    {
+        $condition = new Conditions\NullCondition();
+
+        $this->assertTrue($condition->isEmpty());
+
+        $condition = (new Conditions\NullCondition())->and(new Conditions\Equal('response', new Types\Integer(42)));
+
+        $this->assertFalse($condition->isEmpty());
+
+        $condition = (new Conditions\Equal('response', new Types\Integer(42)))->and(new Conditions\NullCondition());
+
+        $this->assertFalse($condition->isEmpty());
     }
 }

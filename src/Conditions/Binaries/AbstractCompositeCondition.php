@@ -36,7 +36,7 @@ abstract class AbstractCompositeCondition extends AbstractCondition implements C
 
     public function isEmpty()
     {
-        return $this->leftCondition->isEmpty() || $this->rightCondition->isEmpty();
+        return $this->leftCondition->isEmpty() && $this->rightCondition->isEmpty();
     }
 
     protected function buildPartCondition(Condition $condition, Escaper $escaper)
