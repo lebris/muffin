@@ -2,7 +2,7 @@
 
 use Mdd\QueryBuilder\Queries\Snippets;
 
-class SelectPartBuilderTest extends PHPUnit_Framework_TestCase
+class SelectSnippetTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerTestSelectViaConstructor

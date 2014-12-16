@@ -2,7 +2,7 @@
 
 use Mdd\QueryBuilder\Queries\Snippets;
 
-class DeletePartTest extends PHPUnit_Framework_TestCase
+class DeleteSnippetTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerTestDeleteViaConstructor

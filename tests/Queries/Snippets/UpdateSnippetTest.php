@@ -2,7 +2,7 @@
 
 use Mdd\QueryBuilder\Queries\Snippets;
 
-class UpdatePartBuilderTest extends PHPUnit_Framework_TestCase
+class UpdateSnippetTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerTestUpdate
