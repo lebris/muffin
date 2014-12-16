@@ -7,13 +7,11 @@ use Mdd\QueryBuilder\Snippet;
 class Limit implements Snippet
 {
     private
-        $limit,
-        $offset;
+        $limit;
 
-    public function __construct($limit, $offset = null)
+    public function __construct($limit)
     {
         $this->limit = $this->ensureIsInteger($limit);
-        $this->offset = $this->ensureIsInteger($offset);
     }
 
     public function toString()
@@ -25,7 +23,7 @@ class Limit implements Snippet
 
         return sprintf(
             'LIMIT %s',
-            implode(', ', array_filter(array($this->offset, $this->limit)))
+            $this->limit
         );
     }
 
