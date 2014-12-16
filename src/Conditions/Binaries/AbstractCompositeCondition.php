@@ -5,8 +5,9 @@ namespace Mdd\QueryBuilder\Conditions\Binaries;
 use Mdd\QueryBuilder\Conditions\CompositeCondition;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Escaper;
+use Mdd\QueryBuilder\Conditions\AbstractCondition;
 
-abstract class AbstractCompositeCondition implements CompositeCondition
+abstract class AbstractCompositeCondition extends AbstractCondition implements CompositeCondition
 {
     protected
         $leftCondition,
@@ -20,7 +21,22 @@ abstract class AbstractCompositeCondition implements CompositeCondition
 
     public function toString(Escaper $escaper)
     {
+        if($this->leftCondition->isEmpty())
+        {
+            return $this->rightCondition->toString($escaper);
+        }
+
+        if($this->rightCondition->isEmpty())
+        {
+            return $this->leftCondition->toString($escaper);
+        }
+
         return $this->buildCondition($escaper);
+    }
+
+    public function isEmpty()
+    {
+        return $this->leftCondition->isEmpty() || $this->rightCondition->isEmpty();
     }
 
     protected function buildPartCondition(Condition $condition, Escaper $escaper)

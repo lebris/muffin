@@ -32,6 +32,11 @@ class In extends AbstractCondition
         );
     }
 
+    public function isEmpty()
+    {
+        return empty($this->column);
+    }
+
     protected function escapeValues(array $types, Escaper $escaper)
     {
         $escapedValues = array();

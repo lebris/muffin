@@ -3,20 +3,9 @@
 namespace Mdd\QueryBuilder\Conditions;
 
 use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Type;
 
 abstract class AbstractCondition implements Condition
 {
-    protected
-        $column,
-        $type;
-
-    public function __construct($column, Type $type)
-    {
-        $this->column = (string) $column;
-        $this->type = $type;
-    }
-
     public function _and(Condition $condition)
     {
         return new Binaries\AndCondition($this, $condition);

@@ -20,4 +20,9 @@ class IsNull extends AbstractCondition
 
         return sprintf('%s IS NULL', $this->column);
     }
+
+    public function isEmpty()
+    {
+        return empty($this->column);
+    }
 }
