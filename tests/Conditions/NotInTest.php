@@ -6,7 +6,7 @@ use Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 use Mdd\QueryBuilder\Types\Datetime;
 
-class InTest extends PHPUnit_Framework_TestCase
+class NotInTest extends PHPUnit_Framework_TestCase
 {
     protected
         $escaper;
@@ -21,7 +21,7 @@ class InTest extends PHPUnit_Framework_TestCase
      */
     public function testIn($expected, Type $column, array $values)
     {
-        $condition = new Conditions\In($column, $values);
+        $condition = new Conditions\NotIn($column, $values);
 
         $this->assertSame($expected, $condition->toString($this->escaper));
     }
@@ -29,15 +29,15 @@ class InTest extends PHPUnit_Framework_TestCase
     public function providerTestIn()
     {
         return array(
-            'single int' => array("score IN (42)", new Types\Integer('score'), [42]),
-            'array of int' => array("score IN (42, 1337, 69)", new Types\Integer('score'), [42, 1337, 69]),
+            'single int' => array("score NOT IN (42)", new Types\Integer('score'), [42]),
+            'array of int' => array("score NOT IN (42, 1337, 69)", new Types\Integer('score'), [42, 1337, 69]),
 
-            'single string' => array("race IN ('pony')", new Types\String('race'), ['pony']),
-            'array of string' => array("score IN ('pony', 'unicorn', 'burger')", new Types\String('score'), ['pony', 'unicorn', 'burger']),
+            'single string' => array("race NOT IN ('pony')", new Types\String('race'), ['pony']),
+            'array of string' => array("score NOT IN ('pony', 'unicorn', 'burger')", new Types\String('score'), ['pony', 'unicorn', 'burger']),
 
-            'single datetime' => array("race IN ('2014-12-04 20:57:12')", new Types\Datetime('race'), ['2014-12-04 20:57:12']),
+            'single datetime' => array("date NOT IN ('2014-12-04 20:57:12')", new Types\Datetime('date'), ['2014-12-04 20:57:12']),
             'array of datetime' => array(
-                "date IN ('2014-12-04 20:57:12', '1970-01-01 00:00:00', '1988-03-07 13:37:42')",
+                "date NOT IN ('2014-12-04 20:57:12', '1970-01-01 00:00:00', '1988-03-07 13:37:42')",
                 new Types\Datetime('date'),
                 [
                     '2014-12-04 20:57:12',
@@ -47,7 +47,7 @@ class InTest extends PHPUnit_Framework_TestCase
             ),
 
             'mixed types' => array(
-                "stuff IN ('pony', '666', '1988-03-07 13:37:42')",
+                "stuff NOT IN ('pony', '666', '1988-03-07 13:37:42')",
                 new Types\String('stuff'),
                 [
                     'pony',
