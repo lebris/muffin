@@ -34,6 +34,7 @@ class ValuesTest extends PHPUnit_Framework_TestCase
             'value integer as string' => array("(id) VALUES ('42')", array('id' => '42')),
             'value float'         => array("(id, name, score) VALUES (42, 'poney', 13.37)", array('id' => 42, 'name' => 'poney', 'score' => 13.37)),
             'value datetime'      => array("(id, name, date) VALUES (42, 'poney', '2014-03-07 13:37:42')", array('id' => 42, 'name' => 'poney', 'date' => \Datetime::createFromFormat('Y-m-d H:i:s', '2014-03-07 13:37:42'))),
+            'value boolean'       => array("(id, name, flag) VALUES (42, 'poney', 1)", array('id' => 42, 'name' => 'poney', 'flag' => true)),
         );
     }
 

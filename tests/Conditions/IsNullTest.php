@@ -29,6 +29,7 @@ class IsNullTest extends PHPUnit_Framework_TestCase
     {
         return array(
             'nominal' => array('name IS NULL', 'name'),
+            'type' => array('name IS NULL', new Types\String('name')),
             'empty column name' => array('', ''),
             'null column name' => array('', null),
         );

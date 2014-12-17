@@ -4,7 +4,7 @@ namespace Mdd\QueryBuilder;
 
 interface Type
 {
-    public function getValue();
+    public function format($value);
 
     public function isEscapeRequired();
 }

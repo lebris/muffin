@@ -10,9 +10,9 @@ class BooleanTest extends PHPUnit_Framework_TestCase
      */
     public function testFormatBoolean($expected, $value)
     {
-        $type = new Types\Boolean($value);
+        $type = new Types\Boolean('column_name');
 
-        $this->assertSame($expected, $type->getValue());
+        $this->assertSame($expected, $type->format($value));
     }
 
     public function providerTestFormatBoolean()

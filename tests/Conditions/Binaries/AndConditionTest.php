@@ -26,10 +26,10 @@ class AndConditionTest extends PHPUnit_Framework_TestCase
 
     public function providerTestAndCondition()
     {
-        $conditionA = new Conditions\Equal('name', new Types\String('rainbow'));
-        $conditionB = new Conditions\Equal('taste', new Types\String('burger'));
-        $conditionC = new Conditions\Equal('rank', new Types\Integer('42'));
-        $conditionD = new Conditions\Equal('author', new Types\String('julian'));
+        $conditionA = new Conditions\Equal(new Types\String('name'), 'rainbow');
+        $conditionB = new Conditions\Equal(new Types\String('taste'), 'burger');
+        $conditionC = new Conditions\Equal(new Types\Integer('rank'), '42');
+        $conditionD = new Conditions\Equal(new Types\String('author'), 'julian');
 
         $orComposite1  = new Conditions\Binaries\OrCondition($conditionA, $conditionB);
         $orComposite2  = new Conditions\Binaries\OrCondition($conditionC, $conditionD);

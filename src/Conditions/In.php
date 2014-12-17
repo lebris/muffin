@@ -7,49 +7,49 @@ use Mdd\QueryBuilder\Escaper;
 class In extends AbstractCondition
 {
     protected
-        $column,
-        $types;
+        $type,
+        $values;
 
-    public function __construct($column, array $types)
+    public function __construct($column, array $values)
     {
-        $this->column = (string) $column;
-        $this->types = $types;
+        $this->type = $column;
+        $this->values = $values;
     }
 
     public function toString(Escaper $escaper)
     {
-        if(empty($this->column))
+        if(empty($this->type))
         {
             return '';
         }
 
-        $values = $this->escapeValues($this->types, $escaper);
+        $values = $this->escapeValues($this->values, $escaper);
 
         return sprintf(
             '%s IN (%s)',
-            $this->column,
+            $this->type->getName(),
             implode(', ', $values)
         );
     }
 
     public function isEmpty()
     {
-        return empty($this->column);
+        return empty($this->type->getName());
     }
 
-    protected function escapeValues(array $types, Escaper $escaper)
+    protected function escapeValues(array $values, Escaper $escaper)
     {
         $escapedValues = array();
 
-        foreach($types as $type)
+        foreach($values as $value)
         {
-            $value = $type->getValue();
-            if($type->isEscapeRequired())
+            $formatedValue = $this->type->format($value);
+            if($this->type->isEscapeRequired())
             {
-                $value = $escaper->escape($value);
+                $formatedValue = $escaper->escape($formatedValue);
             }
 
-            $escapedValues[] = $value;
+            $escapedValues[] = $formatedValue;
         }
 
         return $escapedValues;

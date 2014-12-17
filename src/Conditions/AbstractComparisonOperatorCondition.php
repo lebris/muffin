@@ -8,39 +8,41 @@ use Mdd\QueryBuilder\Type;
 abstract class AbstractComparisonOperatorCondition extends AbstractCondition
 {
     protected
-        $column,
-        $type;
+        $type,
+        $value;
 
-    public function __construct($column, Type $type)
+    public function __construct(Type $column, $value)
     {
-        $this->column = (string) $column;
-        $this->type = $type;
+        $this->type = $column;
+        $this->value = $value;
     }
 
     public function toString(Escaper $escaper)
     {
-        if(empty($this->column))
+        if(empty($this->type->getName()))
         {
             return '';
         }
 
         return sprintf(
             '%s %s %s',
-            $this->column,
+            $this->type->getName(),
             $this->getConditionOperator(),
-            $this->escapeValue($this->type->getValue(), $escaper)
+            $this->escapeValue($this->value, $escaper)
         );
     }
 
     public function isEmpty()
     {
-        return empty($this->column);
+        return empty($this->type);
     }
 
     abstract protected function getConditionOperator();
 
     private function escapeValue($value, Escaper $escaper)
     {
+        $value = $this->type->format($value);
+
         if($this->type->isEscapeRequired())
         {
             $value = $escaper->escape($value);

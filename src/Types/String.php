@@ -9,7 +9,7 @@ class String extends AbstractType
         return true;
     }
 
-    protected function format($value)
+    public function format($value)
     {
         return (string) $value;
     }

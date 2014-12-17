@@ -1,26 +1,17 @@
 <?php
 
 use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 
 class StringTest extends PHPUnit_Framework_TestCase
 {
-    protected
-        $escaper;
-
-    protected function setUp()
-    {
-        $this->escaper = new SimpleEscaper();
-    }
-
     /**
      * @dataProvider providerTestFormatString
      */
     public function testFormatString($expected, $value)
     {
-        $type = new Types\String($value);
+        $type = new Types\String('column_name');
 
-        $this->assertSame($expected, $type->getValue());
+        $this->assertSame($expected, $type->format($value));
     }
 
     public function providerTestFormatString()

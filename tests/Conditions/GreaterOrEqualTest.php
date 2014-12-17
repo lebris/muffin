@@ -19,9 +19,9 @@ class GreaterOrEqualOrEqualTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider providerTestGreaterOrEqual
      */
-    public function testGreaterOrEqual($expected, $column, Type $type)
+    public function testGreaterOrEqual($expected, Type $column, $value)
     {
-        $condition = new Conditions\GreaterOrEqual($column, $type);
+        $condition = new Conditions\GreaterOrEqual($column, $value);
 
         $this->assertSame($expected, $condition->toString($this->escaper));
     }
@@ -29,22 +29,22 @@ class GreaterOrEqualOrEqualTest extends PHPUnit_Framework_TestCase
     public function providerTestGreaterOrEqual()
     {
         return array(
-            'null integer' => array("rank >= 0", 'rank', new Types\Integer(null)),
-            'integer zero' => array("rank >= 0", 'rank', new Types\Integer(0)),
+            'null integer' => array("rank >= 0", new Types\Integer('rank'), null),
+            'integer zero' => array("rank >= 0", new Types\Integer('rank'), 0),
 
-            'integer' => array("rank >= 1337", 'rank', new Types\Integer(1337)),
-            'integer in string' => array("rank >= 42", 'rank', new Types\Integer('42')),
+            'integer' => array("rank >= 1337", new Types\Integer('rank'), 1337),
+            'integer in string' => array("rank >= 42", new Types\Integer('rank'), '42'),
 
-            'empty string' => array("score >= ''", 'score', new Types\String('')),
-            'integer as string' => array("score >= '666'", 'score', new Types\String('666')),
-            'string' => array("score >= 'unicorn'", 'score', new Types\String('unicorn')),
+            'empty string' => array("score >= ''", new Types\String('score'), ''),
+            'integer as string' => array("score >= '666'", new Types\String('score'), '666'),
+            'string' => array("score >= 'unicorn'", new Types\String('score'), 'unicorn'),
 
-            'simple datetime' => array("date >= '2014-03-07 14:18:42'", 'date', new Types\Datetime('2014-03-07 14:18:42')),
-            'empty datetime' => array("date >= ''", 'date', new Types\Datetime('')),
+            'simple datetime' => array("date >= '2014-03-07 14:18:42'", new Types\Datetime('date'), '2014-03-07 14:18:42'),
+            'empty datetime' => array("date >= ''", new Types\Datetime('date'), ''),
 
-            'float' => array("rank >= 13.37", 'rank', new Types\Float(13.37)),
+            'float' => array("rank >= 13.37", new Types\Float('rank'), 13.37),
 
-            'empty column name' => array('', '', new Types\String('poney')),
+            'empty column name' => array('', new Types\String(''), 'poney'),
         );
     }
 }

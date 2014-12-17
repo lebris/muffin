@@ -5,22 +5,14 @@ use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
 
 class DatetimeTest extends PHPUnit_Framework_TestCase
 {
-    protected
-        $escaper;
-
-    protected function setUp()
-    {
-        $this->escaper = new SimpleEscaper();
-    }
-
     /**
      * @dataProvider providerTestFormatDatetime
      */
     public function testFormatDatetime($expected, $value)
     {
-        $type = new Types\Datetime($value);
+        $type = new Types\Datetime('column_name');
 
-        $this->assertSame($expected, $type->getValue());
+        $this->assertSame($expected, $type->format($value));
     }
 
     public function providerTestFormatDatetime()

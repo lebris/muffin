@@ -22,17 +22,15 @@ class UpdateTest extends PHPUnit_Framework_TestCase
 
         $query
             ->set(array('taste' => 'cheese'))
-            ->set(array('vegan' => new Types\Boolean(false)))
+            ->set(array('vegan' => false))
             ->set(array('name' => 'The big one'))
         ;
 
         $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one'", $query->toString($this->escaper));
 
-        $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one'", $query->toString($this->escaper));
-
         $query
-            ->where(new Conditions\Greater('score', new Types\Integer(1337)))
-            ->where(new Conditions\Equal('author', new Types\String('julian')))
+            ->where(new Conditions\Greater(new Types\Integer('score'), 1337))
+            ->where(new Conditions\Equal(new Types\String('author'), 'julian'))
         ;
 
         $this->assertSame("UPDATE burger SET taste = 'cheese', vegan = 0, name = 'The big one' WHERE score > 1337 AND author = 'julian'", $query->toString($this->escaper));
@@ -96,7 +94,7 @@ class UpdateTest extends PHPUnit_Framework_TestCase
             ->update('burger', 'b')
             ->update('poney', 'p')
             ->set(array('date' => '2014-03-07 13:37:42'))
-            ->where(new Conditions\In('author', array(new Types\String('julian'), new Types\String('claude'))))
+            ->where(new Conditions\In(new Types\String('author'), array('julian', 'claude')))
         ;
 
         $this->assertSame("UPDATE burger AS b, poney AS p SET date = '2014-03-07 13:37:42' WHERE author IN ('julian', 'claude')", $query->toString($this->escaper));

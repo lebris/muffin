@@ -7,10 +7,13 @@ use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Types\String;
+use Mdd\QueryBuilder\Traits\TypeGuesser;
 
 class Values implements Snippet
 {
-    use EscaperAware;
+    use
+        EscaperAware,
+        TypeGuesser;
 
     private
         $values;
@@ -66,28 +69,28 @@ class Values implements Snippet
         {
             if(! empty($columnName))
             {
-                $valuesSet[] = $this->formatValue($value);
+                $type = $this->guessType($columnName, $value);
+
+                $valuesSet[] = $this->formatValue($type, $value);
             }
         }
 
         return $this->wrapWithParentheses(implode(', ', $valuesSet));
     }
 
-    private function formatValue($value)
+    private function formatValue(Type $type, $value)
     {
         if(is_null($value))
         {
             return 'NULL';
         }
 
-        $type = $this->guessType($value);
-
-        return $this->escapeValue($type);
+        return $this->escapeValue($type, $value);
     }
 
-    private function escapeValue(Type $type)
+    private function escapeValue(Type $type, $value)
     {
-        $value = $type->getValue();
+        $value = $type->format($value);
 
         if($type->isEscapeRequired())
         {
@@ -100,25 +103,5 @@ class Values implements Snippet
     private function wrapWithParentheses($value)
     {
         return sprintf('(%s)', $value);
-    }
-
-    private function guessType($value)
-    {
-        if(is_int($value))
-        {
-            return new Types\Integer($value);
-        }
-
-        if(is_float($value))
-        {
-            return new Types\Float($value);
-        }
-
-        if($value instanceof \DateTime)
-        {
-            return new Types\Datetime($value);
-        }
-
-        return new Types\String($value);
     }
 }

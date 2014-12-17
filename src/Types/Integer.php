@@ -9,7 +9,7 @@ class Integer extends AbstractType
         return false;
     }
 
-    protected function format($value)
+    public function format($value)
     {
         return (int) $value;
     }

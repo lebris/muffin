@@ -30,12 +30,12 @@ class HavingTest extends PHPUnit_Framework_TestCase
     public function providerTestHaving()
     {
         $nullCondition = new Conditions\NullCondition();
-        $simpleCondition = new Conditions\Greater('score', new Types\Integer(42));
+        $simpleCondition = new Conditions\Greater(new Types\Integer('score'), 42);
 
-        $compositeCondition1 = $simpleCondition->and((new Conditions\Equal('type', new Types\String('burger')))->or(new Conditions\Greater('score', new Types\Integer(1337))));
-        $compositeCondition2 = $nullCondition->and($simpleCondition)->and((new Conditions\Equal('type', new Types\String('burger')))->or(new Conditions\Greater('score', new Types\Integer(1337))));
+        $compositeCondition1 = $simpleCondition->and((new Conditions\Equal(new Types\String('type'), 'burger'))->or(new Conditions\Greater(new Types\Integer('score'), 1337)));
+        $compositeCondition2 = $nullCondition->and($simpleCondition)->and((new Conditions\Equal(new Types\String('type'), 'burger'))->or(new Conditions\Greater(new Types\Integer('score'), 1337)));
 
-        $nullAndCompositeCondition = $nullCondition->and((new Conditions\Equal('type', new Types\String('burger')))->or(new Conditions\Greater('score', new Types\Integer(1337))));
+        $nullAndCompositeCondition = $nullCondition->and((new Conditions\Equal(new Types\String('type'), 'burger'))->or(new Conditions\Greater(new Types\Integer('score'), 1337)));
         $nullCompositeCondition = $nullCondition->and($nullCondition->and($nullCondition->or($nullCondition)));
 
         return array(

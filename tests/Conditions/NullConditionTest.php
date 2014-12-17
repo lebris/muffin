@@ -30,32 +30,32 @@ class NullConditionTest extends PHPUnit_Framework_TestCase
 
     public function testNullConditionAndCondition()
     {
-        $condition = (new Conditions\NullCondition())->and(new Conditions\Different('poney', new Types\Integer(666)));
+        $condition = (new Conditions\NullCondition())->and(new Conditions\Different(new Types\Integer('poney'), 666));
 
         $this->assertSame('poney != 666', $condition->toString($this->escaper));
 
-        $condition = (new Conditions\Different('poney', new Types\Integer(666)))->and(new Conditions\NullCondition());
+        $condition = (new Conditions\Different(new Types\Integer('poney'), 666))->and(new Conditions\NullCondition());
 
         $this->assertSame('poney != 666', $condition->toString($this->escaper));
     }
 
     public function testNullConditionOrCondition()
     {
-        $condition = (new Conditions\NullCondition())->or(new Conditions\Different('poney', new Types\Integer(666)));
+        $condition = (new Conditions\NullCondition())->or(new Conditions\Different(new Types\Integer('poney'), 666));
 
         $this->assertSame('poney != 666', $condition->toString($this->escaper));
 
-        $condition = (new Conditions\Different('poney', new Types\Integer(666)))->or(new Conditions\NullCondition());
+        $condition = (new Conditions\Different(new Types\Integer('poney'), 666))->or(new Conditions\NullCondition());
 
         $this->assertSame('poney != 666', $condition->toString($this->escaper));
     }
 
     public function testNullConditionAndComposite()
     {
-        $composite = (new Conditions\Different('poney', new Types\Integer(666)))
+        $composite = (new Conditions\Different(new Types\Integer('poney'), 666))
                         ->and(
-                            (new Conditions\Equal('response', new Types\Integer(42)))
-                                ->or(new Conditions\Greater('score', new Types\Integer(1337)))
+                            (new Conditions\Equal(new Types\Integer('response'), 42))
+                                ->or(new Conditions\Greater(new Types\Integer('score'), 1337))
                         );
 
         $condition = (new Conditions\NullCondition())->and($composite);
@@ -69,10 +69,10 @@ class NullConditionTest extends PHPUnit_Framework_TestCase
 
     public function testNullConditionOrComposite()
     {
-        $composite = (new Conditions\Different('poney', new Types\Integer(666)))
+        $composite = (new Conditions\Different(new Types\Integer('poney'), 666))
                         ->and(
-                            (new Conditions\Equal('response', new Types\Integer(42)))
-                                ->or(new Conditions\Greater('score', new Types\Integer(1337)))
+                            (new Conditions\Equal(new Types\Integer('response'), 42))
+                                ->or(new Conditions\Greater(new Types\Integer('score'), 1337))
                         );
 
         $condition = (new Conditions\NullCondition())->or($composite);
@@ -90,11 +90,11 @@ class NullConditionTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($condition->isEmpty());
 
-        $condition = (new Conditions\NullCondition())->and(new Conditions\Equal('response', new Types\Integer(42)));
+        $condition = (new Conditions\NullCondition())->and(new Conditions\Equal(new Types\Integer('response'), 42));
 
         $this->assertFalse($condition->isEmpty());
 
-        $condition = (new Conditions\Equal('response', new Types\Integer(42)))->and(new Conditions\NullCondition());
+        $condition = (new Conditions\Equal(new Types\Integer('response'), 42))->and(new Conditions\NullCondition());
 
         $this->assertFalse($condition->isEmpty());
     }

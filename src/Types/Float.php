@@ -9,7 +9,7 @@ class Float extends AbstractType
         return false;
     }
 
-    protected function format($value)
+    public function format($value)
     {
         return floatval($value);
     }

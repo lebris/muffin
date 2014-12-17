@@ -7,10 +7,13 @@ use Mdd\QueryBuilder\Type;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Traits\EscaperAware;
+use Mdd\QueryBuilder\Traits\TypeGuesser;
 
 class Set implements Snippet
 {
-    use EscaperAware;
+    use
+        EscaperAware,
+        TypeGuesser;
 
     private
         $sets;
@@ -35,16 +38,25 @@ class Set implements Snippet
         }
 
         $sets = array();
-        foreach($this->sets as $column => $value)
+        foreach($this->sets as $columnName => $value)
         {
-            if(! $value instanceof Type)
-            {
-                $value = new Types\String($value);
-            }
+            $type = $this->guessType($columnName, $value);
 
-            $sets[] = (new Conditions\Equal($column, $value))->toString($this->escaper);
+            $sets[] = (new Conditions\Equal($type, $value))->toString($this->escaper);
         }
 
         return sprintf('SET %s', implode(', ', $sets));
+    }
+
+    private function escapeValue(Type $type, $value)
+    {
+        $value = $type->format($value);
+
+        if($type->isEscapeRequired())
+        {
+            $value = $this->escaper->escape($value);
+        }
+
+        return $value;
     }
 }

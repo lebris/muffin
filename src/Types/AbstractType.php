@@ -7,17 +7,15 @@ use Mdd\QueryBuilder\Type;
 abstract class AbstractType implements Type
 {
     private
-        $value;
+        $name;
 
-    public function __construct($value)
+    public function __construct($name)
     {
-        $this->value = $value;
+        $this->name = (string) $name;
     }
 
-    public function getValue()
+    public function getName()
     {
-        return $this->format($this->value);
+        return $this->name;
     }
-
-    abstract protected function format($value);
 }

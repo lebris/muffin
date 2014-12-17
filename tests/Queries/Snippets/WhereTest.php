@@ -30,10 +30,10 @@ class WhereTest extends PHPUnit_Framework_TestCase
     public function providerTestWhere()
     {
         return array(
-            'empty condition' => array('', new Conditions\Equal('', new Types\String(''))),
-            'simple string condition #1' => array("WHERE name = 'burger'", new Conditions\Equal('name', new Types\String('burger'))),
-            'simple string condition #2' => array("WHERE name = '666'", new Conditions\Equal('name', new Types\String('666'))),
-            'simple int condition' => array("WHERE name = 666", new Conditions\Equal('name', new Types\Integer(666))),
+            'empty condition' => array('', new Conditions\Equal(new Types\String(''), '')),
+            'simple string condition #1' => array("WHERE name = 'burger'", new Conditions\Equal(new Types\String('name'), 'burger')),
+            'simple string condition #2' => array("WHERE name = '666'", new Conditions\Equal(new Types\String('name'), '666')),
+            'simple int condition' => array("WHERE name = 666", new Conditions\Equal(new Types\Integer('name'), 666)),
         );
     }
 }

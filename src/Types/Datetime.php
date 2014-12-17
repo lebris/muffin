@@ -12,7 +12,7 @@ class Datetime extends AbstractType
         return true;
     }
 
-    protected function format($value)
+    public function format($value)
     {
         if($value instanceof \DateTime)
         {

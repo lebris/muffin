@@ -16,10 +16,10 @@ class HelperTest extends PHPUnit_Framework_TestCase
 
     public function testMixedHelper()
     {
-        $condition = (new Conditions\Equal('name', new Types\String('rainbow')))
+        $condition = (new Conditions\Equal(new Types\String('name'), 'rainbow'))
             ->or(
-                (new Conditions\Equal('taste', new Types\String('burger')))
-                ->and(new Conditions\Equal('rank', new Types\Integer(42)))
+                (new Conditions\Equal(new Types\String('taste'), 'burger'))
+                ->and(new Conditions\Equal(new Types\Integer('rank'), 42))
             );
 
         $this->assertSame($condition->toString($this->escaper), "name = 'rainbow' OR (taste = 'burger' AND rank = 42)");
@@ -30,7 +30,7 @@ class HelperTest extends PHPUnit_Framework_TestCase
      */
     public function testNoParameterGiven()
     {
-        $condition = new Conditions\Equal('taste', new Types\String('burger'));
+        $condition = new Conditions\Equal(new Types\String('taste'), 'burger');
         $condition->or();
     }
 
@@ -39,8 +39,8 @@ class HelperTest extends PHPUnit_Framework_TestCase
      */
     public function testTypoInOrHelperName()
     {
-        $condition = new Conditions\Equal('taste', new Types\String('burger'));
-        $condition->ro(new Conditions\Equal('taste', new Types\String('vegetable')));
+        $condition = new Conditions\Equal(new Types\String('taste'), 'burger');
+        $condition->ro(new Conditions\Equal(new Types\String('taste'), 'vegetable'));
     }
 
     /**
@@ -48,7 +48,7 @@ class HelperTest extends PHPUnit_Framework_TestCase
      */
     public function testTypoInAndHelperName()
     {
-        $condition = new Conditions\Equal('taste', new Types\String('burger'));
-        $condition->adn(new Conditions\Equal('taste', new Types\String('vegetable')));
+        $condition = new Conditions\Equal(new Types\String('taste'), 'burger');
+        $condition->adn(new Conditions\Equal(new Types\String('taste'), 'vegetable'));
     }
 }

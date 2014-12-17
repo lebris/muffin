@@ -22,7 +22,7 @@ class DeleteTest extends PHPUnit_Framework_TestCase
 
         $query
             ->from('burger', 'b')
-            ->where(new Conditions\Equal('type', new Types\String('healthy')))
+            ->where(new Conditions\Equal(new Types\String('type'), 'healthy'))
         ;
 
         $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy'", $query->toString($this->escaper));
@@ -45,7 +45,7 @@ class DeleteTest extends PHPUnit_Framework_TestCase
 
         $query
             ->from('burger', 'b')
-            ->where(new Conditions\Equal('type', new Types\String('healthy')))
+            ->where(new Conditions\Equal(new Types\String('type'), 'healthy'))
             ->innerJoin('taste', 't')->on('b.taste_id', 't.id')
         ;
 
@@ -58,7 +58,7 @@ class DeleteTest extends PHPUnit_Framework_TestCase
 
         $query
             ->from('burger', 'b')
-            ->where(new Conditions\Equal('type', new Types\String('healthy')))
+            ->where(new Conditions\Equal(new Types\String('type'), 'healthy'))
             ->leftJoin('taste', 't')->on('b.taste_id', 't.id')
         ;
 
@@ -71,7 +71,7 @@ class DeleteTest extends PHPUnit_Framework_TestCase
 
         $query
             ->from('burger', 'b')
-            ->where(new Conditions\Equal('type', new Types\String('healthy')))
+            ->where(new Conditions\Equal(new Types\String('type'), 'healthy'))
             ->rightJoin('taste', 't')->on('b.taste_id', 't.id')
         ;
 
@@ -83,7 +83,7 @@ class DeleteTest extends PHPUnit_Framework_TestCase
         $query = (new Queries\Delete('burger', 'b'))->setEscaper($this->escaper);
 
         $query
-            ->where(new Conditions\Equal('type', new Types\String('healthy')))
+            ->where(new Conditions\Equal(new Types\String('type'), 'healthy'))
         ;
 
         $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy'", $query->toString($this->escaper));

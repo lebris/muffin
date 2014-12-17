@@ -18,9 +18,9 @@ class DifferentTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider providerTestDifferent
      */
-    public function testDifferent($expected, $column, Type $type)
+    public function testDifferent($expected, Type $column, $value)
     {
-        $condition = new Conditions\Different($column, $type);
+        $condition = new Conditions\Different($column, $value);
 
         $this->assertSame($expected, $condition->toString($this->escaper));
     }
@@ -28,16 +28,16 @@ class DifferentTest extends PHPUnit_Framework_TestCase
     public function providerTestDifferent()
     {
         return array(
-            'simple string' => array("name != 'poney'", 'name', new Types\String('poney')),
-            'empty string' => array("name != ''", 'name', new Types\String('')),
+            'simple string' => array("name != 'poney'", new Types\String('name'), 'poney'),
+            'empty string' => array("name != ''", new Types\String('name'), ''),
 
-            'simple int' => array("id != 42", 'id', new Types\Integer(42)),
-            'empty int' => array("id != 0", 'id', new Types\Integer('')),
+            'simple int' => array("id != 42", new Types\Integer('id'), 42),
+            'empty int' => array("id != 0", new Types\Integer('id'), ''),
 
-            'simple datetime' => array("date != '2014-12-01 13:37:42'", 'date', new Types\Datetime('2014-12-01 13:37:42')),
-            'empty datetime' => array("date != ''", 'date', new Types\Datetime('')),
+            'simple datetime' => array("date != '2014-12-01 13:37:42'", new Types\Datetime('date'), '2014-12-01 13:37:42'),
+            'empty datetime' => array("date != ''", new Types\Datetime('date'), ''),
 
-            'empty column name' => array('', '', new Types\Integer(42)),
+            'empty column name' => array('', new Types\Integer(''), 42),
         );
     }
 }

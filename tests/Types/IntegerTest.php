@@ -18,9 +18,9 @@ class IntegerTest extends PHPUnit_Framework_TestCase
      */
     public function testFormatInt($expected, $value)
     {
-        $type = new Types\Integer($value);
+        $type = new Types\Integer('column_name');
 
-        $this->assertSame($expected, $type->getValue());
+        $this->assertSame($expected, $type->format($value));
     }
 
     public function providerTestFormatInt()

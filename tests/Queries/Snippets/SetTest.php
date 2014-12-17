@@ -23,12 +23,17 @@ class SetTest extends PHPUnit_Framework_TestCase
         $this->assertSame("SET name = 'burger'", $part->toString());
 
         $part->set(array(
-            'rank' => 42,
-            'score' => new Types\Integer(1337)
+            'rank' => '42',
+            'score' => 1337
         ));
         $this->assertSame("SET name = 'burger', rank = '42', score = 1337", $part->toString());
 
         $part->set(array());
         $this->assertSame("SET name = 'burger', rank = '42', score = 1337", $part->toString());
+
+        $part->set(array(
+            'flag' => true
+        ));
+        $this->assertSame("SET name = 'burger', rank = '42', score = 1337, flag = 1", $part->toString());
     }
 }
