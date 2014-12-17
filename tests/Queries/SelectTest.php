@@ -286,4 +286,23 @@ class SelectTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("SELECT id FROM poney AS p WHERE name = 'burger'", $query->toString($this->escaper));
     }
+
+    public function testHaving()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+
+        $query
+            ->select('id')
+            ->from('poney', 'p')
+            ->having(new Conditions\Greater('rank', new Types\Integer(42)))
+        ;
+
+        $this->assertSame("SELECT id FROM poney AS p HAVING rank > 42", $query->toString($this->escaper));
+
+        $query->having(
+            (new Conditions\Equal('author_id', new Types\Integer(12)))->or(new Conditions\Equal('author_id', new Types\Integer(666)))
+        );
+
+        $this->assertSame("SELECT id FROM poney AS p HAVING (rank > 42) AND (author_id = 12 OR author_id = 666)", $query->toString($this->escaper));
+    }
 }

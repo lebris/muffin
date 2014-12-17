@@ -7,6 +7,7 @@ use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Traits\EscaperAware;
 use Mdd\QueryBuilder\Snippet;
 use Mdd\QueryBuilder\Queries\Snippets\Builders;
+use Mdd\QueryBuilder\Queries\Snippets\Having;
 
 class Select implements Query
 {
@@ -20,13 +21,15 @@ class Select implements Query
 
     private
         $select,
-        $from;
+        $from,
+        $having;
 
     public function __construct($columns = null)
     {
         $this->select = new Snippets\Select();
         $this->where = new Snippets\Where();
         $this->groupBy = new Snippets\GroupBy();
+        $this->having = new Snippets\Having();
         $this->orderBy = new Snippets\OrderBy();
 
         $this->select->select($columns);
@@ -40,6 +43,7 @@ class Select implements Query
             $this->buildJoin(),
             $this->buildWhere(),
             $this->buildGroupBy(),
+            $this->buildHaving(),
             $this->buildOrderBy(),
             $this->buildLimit(),
         );
@@ -61,6 +65,13 @@ class Select implements Query
         return $this;
     }
 
+    public function having(Condition $condition)
+    {
+        $this->having->having($condition);
+
+        return $this;
+    }
+
     private function buildSelect()
     {
         return $this->select->toString();
@@ -74,5 +85,12 @@ class Select implements Query
         }
 
         return $this->from->toString();
+    }
+
+    private function buildHaving()
+    {
+        $this->having->setEscaper($this->escaper);
+
+        return $this->having->toString();
     }
 }
