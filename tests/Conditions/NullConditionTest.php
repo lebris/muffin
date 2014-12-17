@@ -3,8 +3,6 @@
 use Mdd\QueryBuilder\Conditions;
 use Mdd\QueryBuilder\Types;
 use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
-use Mdd\QueryBuilder\Conditions\Different;
-use Mdd\QueryBuilder\Conditions\Equal;
 
 class NullConditionTest extends PHPUnit_Framework_TestCase
 {
