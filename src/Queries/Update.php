@@ -76,11 +76,6 @@ class Update implements Query
 
     private function buildSets()
     {
-        if(!$this->sets instanceof Snippet)
-        {
-            throw new \LogicException('No column for FROM clause');
-        }
-
         $this->sets->setEscaper($this->escaper);
 
         return $this->sets->toString();
