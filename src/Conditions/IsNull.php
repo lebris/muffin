@@ -7,6 +7,9 @@ use Mdd\QueryBuilder\Type;
 
 class IsNull extends AbstractCondition
 {
+    private
+        $column;
+
     public function __construct($column)
     {
         if($column instanceof Type)
