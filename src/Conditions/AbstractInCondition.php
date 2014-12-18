@@ -19,7 +19,7 @@ abstract class AbstractInCondition extends AbstractCondition
 
     public function toString(Escaper $escaper)
     {
-        if(empty($this->type))
+        if($this->isEmpty())
         {
             return '';
         }
