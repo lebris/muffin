@@ -41,7 +41,7 @@ class Select implements Query
             $this->buildSelect(),
             $this->buildFrom(),
             $this->buildJoin(),
-            $this->buildWhere(),
+            $this->buildWhere($this->escaper),
             $this->buildGroupBy(),
             $this->buildHaving(),
             $this->buildOrderBy(),

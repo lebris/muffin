@@ -40,7 +40,7 @@ class Update implements Query
             $this->buildUpdate(),
             $this->buildJoin(),
             $this->buildSets(),
-            $this->buildWhere(),
+            $this->buildWhere($this->escaper),
             $this->buildOrderBy(),
             $this->buildLimit(),
         );

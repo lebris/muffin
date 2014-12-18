@@ -4,6 +4,7 @@ namespace Mdd\QueryBuilder\Queries\Snippets\Builders;
 
 use Mdd\QueryBuilder\Queries\Snippets;
 use Mdd\QueryBuilder\Condition;
+use Mdd\QueryBuilder\Escaper;
 
 trait Where
 {
@@ -17,9 +18,9 @@ trait Where
         return $this;
     }
 
-    private function buildWhere()
+    private function buildWhere(Escaper $escaper)
     {
-        $this->where->setEscaper($this->escaper);
+        $this->where->setEscaper($escaper);
 
         return $this->where->toString();
     }

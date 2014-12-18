@@ -37,7 +37,7 @@ class Delete implements Query
             'DELETE',
             $this->buildFrom(),
             $this->buildJoin(),
-            $this->buildWhere(),
+            $this->buildWhere($this->escaper),
             $this->buildOrderBy(),
             $this->buildLimit(),
         );
