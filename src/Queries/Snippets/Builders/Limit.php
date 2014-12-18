@@ -3,7 +3,6 @@
 namespace Mdd\QueryBuilder\Queries\Snippets\Builders;
 
 use Mdd\QueryBuilder\Queries\Snippets;
-use Mdd\QueryBuilder\Snippet;
 
 trait Limit
 {
