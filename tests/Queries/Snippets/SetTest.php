@@ -36,4 +36,12 @@ class SetTest extends PHPUnit_Framework_TestCase
         ));
         $this->assertSame("SET name = 'burger', rank = '42', score = 1337, flag = 1", $part->toString());
     }
+
+    public function testEmptySet()
+    {
+        $part = new Snippets\Set();
+        $part->setEscaper($this->escaper);
+
+        $this->assertSame('', $part->toString());
+    }
 }
