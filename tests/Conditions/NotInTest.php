@@ -55,6 +55,7 @@ class NotInTest extends PHPUnit_Framework_TestCase
                     '1988-03-07 13:37:42'
                 ]
             ),
+            'empty column' => array('', new Types\String(''), ['unicornz']),
         );
     }
 }

@@ -55,6 +55,8 @@ class InTest extends PHPUnit_Framework_TestCase
                     '1988-03-07 13:37:42'
                 ]
             ),
+
+            'empty column' => array('', new Types\String(''), ['unicornz']),
         );
     }
 
@@ -80,7 +82,7 @@ class InTest extends PHPUnit_Framework_TestCase
             'simple datetime' => array(false, new Types\Datetime('date'), ['2014-12-01 13:37:42']),
             'empty datetime' => array(false, new Types\Datetime('date'), ['']),
 
-            'empty column name' => array(true, new Types\Integer(''), [42]),
+            'empty column name' => array(true, new Types\String(''), [42]),
         );
     }
 }
