@@ -3,6 +3,7 @@
 namespace Mdd\QueryBuilder\Conditions;
 
 use Mdd\QueryBuilder\Escaper;
+use Mdd\QueryBuilder\Type;
 
 abstract class AbstractInCondition extends AbstractCondition
 {
@@ -10,7 +11,7 @@ abstract class AbstractInCondition extends AbstractCondition
         $type,
         $values;
 
-    public function __construct($column, array $values)
+    public function __construct(Type $column, array $values)
     {
         $this->type = $column;
         $this->values = $values;
