@@ -34,7 +34,7 @@ abstract class AbstractComparisonOperatorCondition extends AbstractCondition
 
     public function isEmpty()
     {
-        return empty($this->type);
+        return empty($this->type->getName());
     }
 
     abstract protected function getConditionOperator();

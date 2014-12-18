@@ -43,4 +43,30 @@ class EqualTest extends PHPUnit_Framework_TestCase
             'empty column name' => array('', new Types\String(''), 'poney'),
         );
     }
+
+    /**
+     * @dataProvider providerTestIsEmpty
+     */
+    public function testIsEmpty($expected, Type $column, $value)
+    {
+        $condition = new Conditions\Equal($column, $value);
+
+        $this->assertSame($expected, $condition->isEmpty());
+    }
+
+    public function providerTestIsEmpty()
+    {
+        return array(
+            'simple string' => array(false, new Types\String('name'), 'poney'),
+            'empty string' => array(false, new Types\String('name'), ''),
+
+            'simple int' => array(false, new Types\Integer('id'), 42),
+            'empty int' => array(false, new Types\Integer('id'), ''),
+
+            'simple datetime' => array(false, new Types\Datetime('date'), '2014-12-01 13:37:42'),
+            'empty datetime' => array(false, new Types\Datetime('date'), ''),
+
+            'empty column name' => array(true, new Types\Integer(''), 42),
+        );
+    }
 }

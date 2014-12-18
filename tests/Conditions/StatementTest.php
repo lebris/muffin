@@ -54,4 +54,28 @@ class StatementTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("taste != 'vegetable' AND ((SELECT * FROM burger WHERE taste != 'vegetable') OR Spread ponyz over the world)", $compositeCondition->toString($this->escaper));
     }
+
+    /**
+     * @dataProvider providerTestIsEmpty
+     */
+    public function testIsEmpty($expected, $statement)
+    {
+        $condition = new Conditions\Statement($statement);
+
+        $this->assertSame($expected, $condition->isEmpty());
+    }
+
+    public function providerTestIsEmpty()
+    {
+        $condition = new Conditions\Different(new Types\String('taste'), 'vegetable');
+        $subQuery = new Conditions\Statement((new Queries\Select('*'))->from('burger')->where($condition));
+
+        return array(
+            'string' => array(false, 'ponyz over burgerz'),
+            'int' => array(false, 42),
+            'empty string' => array(true, ''),
+            'null' => array(true, null),
+            'sub query' => array(false, $subQuery),
+        );
+    }
 }
