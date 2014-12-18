@@ -65,7 +65,7 @@ abstract class AbstractSet extends AbstractCondition implements CompositeConditi
 
     private function getNotEmptyConditions()
     {
-        return array_filter($this->conditions, function ($item) {
+        return array_filter($this->conditions, function (Condition $item) {
             return $item->isEmpty() === false;
         });
     }
