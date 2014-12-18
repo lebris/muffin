@@ -1,5 +1,6 @@
 {
     "name": "mdd/query-builder",
+    "description": "A SQL query builder for PHP5.4+",
     "type": "project",
     "authors": [{
             "name": "Claude LE BRIS",

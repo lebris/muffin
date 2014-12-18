@@ -9,10 +9,10 @@ use Mdd\QueryBuilder\Queries\Snippets;
 abstract class AbstractJoin implements Join, Snippet
 {
     private
-    $table,
-    $alias,
-    $using,
-    $on;
+        $table,
+        $alias,
+        $using,
+        $on;
 
     public function __construct($table, $alias = null)
     {
