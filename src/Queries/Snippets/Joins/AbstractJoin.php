@@ -10,7 +10,6 @@ abstract class AbstractJoin implements Join, Snippet
 {
     private
         $table,
-        $alias,
         $using,
         $on;
 
@@ -18,11 +17,6 @@ abstract class AbstractJoin implements Join, Snippet
     {
         $this->table = new Snippets\TableName($table, $alias);
         $this->on = array();
-
-        if(!empty($alias))
-        {
-            $this->alias = (string) $alias;
-        }
     }
 
     public function using($column)
