@@ -14,35 +14,52 @@ class TypeHelpersTest extends PHPUnit_Framework_TestCase
         $this->escaper = new SimpleEscaper();
     }
 
-    /**
-     * @dataProvider providerTestHelper
-     */
-    public function testHelper($expected, $conditionViaHelper)
-    {
-        $this->assertSame($expected->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
-    }
-
-    public function providerTestHelper()
+    public function testHelper()
     {
         $field = new Types\String('burger');
+        $equal = new Conditions\Equal($field, 'poney');
+        $different = new Conditions\Different($field, 'poney');
+        $like = new Conditions\Like($field, 'poney');
+        $greater = new Conditions\Greater($field, 'poney');
+        $greaterOrEqual = new Conditions\GreaterOrEqual($field, 'poney');
+        $lower = new Conditions\Lower($field, 'poney');
+        $lowerOrEqual = new Conditions\LowerOrEqual($field, 'poney');
+        $between = new Conditions\Between($field, 42, 666);
+        $isNull = new Conditions\IsNull($field);
+        $in = new Conditions\In($field, array('poney', 'unicorn'));
+        $notIn = new Conditions\NotIn($field, array('poney', 'unicorn'));
 
-        return array(
-            'Equal' => array(new Conditions\Equal($field, 'poney'), $field->equal('poney')),
-            'Different' => array(new Conditions\Different($field, 'poney'), $field->different('poney')),
-            'Like' => array(new Conditions\Like($field, 'poney'), $field->like('poney')),
+        $conditionViaHelper = $field->equal('poney');
+        $this->assertEquals($equal->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
 
-            'Greater' => array(new Conditions\Greater($field, 42), $field->greaterThan(42)),
-            'GreaterOrEqual' => array(new Conditions\GreaterOrEqual($field, 42), $field->greaterOrEqualThan(42)),
+        $conditionViaHelper = $field->different('poney');
+        $this->assertEquals($different->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
 
-            'Lower' => array(new Conditions\Lower($field, 42), $field->lowerThan(42)),
-            'LowerOrEqual' => array(new Conditions\LowerOrEqual($field, 42), $field->lowerOrEqualThan(42)),
+        $conditionViaHelper = $field->like('poney');
+        $this->assertEquals($like->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
 
-            'Between' => array(new Conditions\Between($field, 42, 666), $field->between(42, 666)),
+        $conditionViaHelper = $field->greaterThan('poney');
+        $this->assertEquals($greater->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
 
-            'IsNull' => array(new Conditions\IsNull($field), $field->IsNull()),
+        $conditionViaHelper = $field->greaterOrEqualThan('poney');
+        $this->assertEquals($greaterOrEqual->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
 
-            'In' => array(new Conditions\In($field, array('poney', 'unicorn')), $field->in(array('poney', 'unicorn'))),
-            'NotIn' => array(new Conditions\NotIn($field, array('poney', 'unicorn')), $field->notIn(array('poney', 'unicorn'))),
-        );
+        $conditionViaHelper = $field->lowerThan('poney');
+        $this->assertEquals($lower->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
+
+        $conditionViaHelper = $field->lowerOrEqualThan('poney');
+        $this->assertEquals($lowerOrEqual->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
+
+        $conditionViaHelper = $field->between(42, 666);
+        $this->assertEquals($between->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
+
+        $conditionViaHelper = $field->isNull();
+        $this->assertEquals($isNull->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
+
+        $conditionViaHelper = $field->in(array('poney', 'unicorn'));
+        $this->assertEquals($in->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
+
+        $conditionViaHelper = $field->notIn(array('poney', 'unicorn'));
+        $this->assertEquals($notIn->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
     }
 }
