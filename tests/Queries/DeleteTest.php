@@ -88,4 +88,14 @@ class DeleteTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("DELETE FROM burger AS b WHERE type = 'healthy'", $query->toString($this->escaper));
     }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testDeleteWithoutFrom()
+    {
+        $query = (new Queries\Delete())->setEscaper($this->escaper);
+
+        $query->toString();
+    }
 }
