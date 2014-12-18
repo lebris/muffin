@@ -47,16 +47,4 @@ class Set implements Snippet
 
         return sprintf('SET %s', implode(', ', $sets));
     }
-
-    private function escapeValue(Type $type, $value)
-    {
-        $value = $type->format($value);
-
-        if($type->isEscapeRequired())
-        {
-            $value = $this->escaper->escape($value);
-        }
-
-        return $value;
-    }
 }
