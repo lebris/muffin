@@ -19,7 +19,7 @@ abstract class AbstractComparisonOperatorCondition extends AbstractCondition
 
     public function toString(Escaper $escaper)
     {
-        if(empty($this->type->getName()))
+        if($this->isEmpty())
         {
             return '';
         }
@@ -34,7 +34,9 @@ abstract class AbstractComparisonOperatorCondition extends AbstractCondition
 
     public function isEmpty()
     {
-        return empty($this->type->getName());
+        $columnName = $this->type->getName();
+
+        return empty($columnName);
     }
 
     abstract protected function getConditionOperator();

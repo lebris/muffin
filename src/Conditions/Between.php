@@ -36,7 +36,8 @@ class Between extends AbstractCondition
 
     public function isEmpty()
     {
-        if(empty($this->type->getName()) || empty($this->start) || empty($this->end))
+        $columnName = $this->type->getName();
+        if(empty($columnName) || empty($this->start) || empty($this->end))
         {
             return true;
         }

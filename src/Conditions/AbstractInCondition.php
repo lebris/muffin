@@ -35,7 +35,9 @@ abstract class AbstractInCondition extends AbstractCondition
 
     public function isEmpty()
     {
-        return empty($this->type->getName());
+        $columnName = $this->type->getName();
+
+        return empty($columnName);
     }
 
     abstract protected function getOperator();
