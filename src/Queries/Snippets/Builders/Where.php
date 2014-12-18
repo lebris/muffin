@@ -2,7 +2,6 @@
 
 namespace Mdd\QueryBuilder\Queries\Snippets\Builders;
 
-use Mdd\QueryBuilder\Queries\Snippets;
 use Mdd\QueryBuilder\Condition;
 use Mdd\QueryBuilder\Escaper;
 
