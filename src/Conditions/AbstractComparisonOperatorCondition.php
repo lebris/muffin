@@ -8,13 +8,13 @@ use Mdd\QueryBuilder\Type;
 abstract class AbstractComparisonOperatorCondition extends AbstractCondition
 {
     protected
-        $type,
-        $value;
+        $leftOperand,
+        $rightOperand;
 
-    public function __construct(Type $column, $value)
+    public function __construct(Type $leftOperand, $rightOperand)
     {
-        $this->type = $column;
-        $this->value = $value;
+        $this->leftOperand = $leftOperand;
+        $this->rightOperand = $rightOperand;
     }
 
     public function toString(Escaper $escaper)
@@ -26,15 +26,30 @@ abstract class AbstractComparisonOperatorCondition extends AbstractCondition
 
         return sprintf(
             '%s %s %s',
-            $this->type->getName(),
+            $this->generateFieldOperand($this->leftOperand),
             $this->getConditionOperator(),
-            $this->escapeValue($this->value, $escaper)
+            $this->generateRightOperand($escaper)
         );
+    }
+
+    private function generateFieldOperand(Type $field)
+    {
+        return $field->getName();
+    }
+
+    private function generateRightOperand(Escaper $escaper)
+    {
+        if($this->rightOperand instanceof Type)
+        {
+            return $this->generateFieldOperand($this->rightOperand);
+        }
+
+        return $this->escapeValue($this->rightOperand, $escaper);
     }
 
     public function isEmpty()
     {
-        $columnName = $this->type->getName();
+        $columnName = $this->leftOperand->getName();
 
         return empty($columnName);
     }
@@ -43,9 +58,9 @@ abstract class AbstractComparisonOperatorCondition extends AbstractCondition
 
     private function escapeValue($value, Escaper $escaper)
     {
-        $value = $this->type->format($value);
+        $value = $this->leftOperand->format($value);
 
-        if($this->type->isEscapeRequired())
+        if($this->leftOperand->isEscapeRequired())
         {
             $value = $escaper->escape($value);
         }
