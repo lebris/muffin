@@ -1,4 +1,10 @@
-# Query Builder
+Muffin
+======
+
+A SQL Query Builder for PHP5.4+
+
+QA
+--
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0e783570-3294-4720-9ef5-d78810f560ff/big.png)](https://insight.sensiolabs.com/projects/0e783570-3294-4720-9ef5-d78810f560ff)
 
