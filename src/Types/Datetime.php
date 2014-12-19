@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Types;
+namespace Muffin\Types;
 
 class Datetime extends AbstractType
 {

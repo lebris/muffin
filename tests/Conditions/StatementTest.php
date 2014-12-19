@@ -1,11 +1,11 @@
 <?php
 
-use Mdd\QueryBuilder\Type;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
-use Mdd\QueryBuilder\Queries;
-use Mdd\QueryBuilder\Conditions\Equal;
+use Muffin\Type;
+use Muffin\Types;
+use Muffin\Conditions;
+use Muffin\Tests\Escapers\SimpleEscaper;
+use Muffin\Queries;
+use Muffin\Conditions\Equal;
 
 class StatementTest extends PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions\Binaries;
+namespace Muffin\Conditions\Binaries;
 
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Escaper;
 
 class AndCondition extends AbstractCompositeCondition
 {

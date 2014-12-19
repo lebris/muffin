@@ -1,8 +1,8 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Snippets;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Types;
+use Muffin\Queries\Snippets;
+use Muffin\Conditions;
+use Muffin\Types;
 
 class JoinsTest extends PHPUnit_Framework_TestCase
 {

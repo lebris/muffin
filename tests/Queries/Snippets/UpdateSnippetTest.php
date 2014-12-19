@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Snippets;
+use Muffin\Queries\Snippets;
 
 class UpdateSnippetTest extends PHPUnit_Framework_TestCase
 {

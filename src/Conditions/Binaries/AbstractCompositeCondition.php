@@ -1,11 +1,11 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions\Binaries;
+namespace Muffin\Conditions\Binaries;
 
-use Mdd\QueryBuilder\Conditions\CompositeCondition;
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Escaper;
-use Mdd\QueryBuilder\Conditions\AbstractCondition;
+use Muffin\Conditions\CompositeCondition;
+use Muffin\Condition;
+use Muffin\Escaper;
+use Muffin\Conditions\AbstractCondition;
 
 abstract class AbstractCompositeCondition extends AbstractCondition implements CompositeCondition
 {

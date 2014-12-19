@@ -1,9 +1,9 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions;
+namespace Muffin\Conditions;
 
-use Mdd\QueryBuilder\Escaper;
-use Mdd\QueryBuilder\Type;
+use Muffin\Escaper;
+use Muffin\Type;
 
 abstract class AbstractInCondition extends AbstractCondition
 {

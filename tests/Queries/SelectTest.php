@@ -1,9 +1,9 @@
 <?php
 
-use Mdd\QueryBuilder\Queries;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Queries;
+use Muffin\Conditions;
+use Muffin\Types;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class SelectTest extends PHPUnit_Framework_TestCase
 {

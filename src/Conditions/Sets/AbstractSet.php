@@ -1,11 +1,11 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions\Sets;
+namespace Muffin\Conditions\Sets;
 
-use Mdd\QueryBuilder\Conditions\AbstractCondition;
-use Mdd\QueryBuilder\Conditions\CompositeCondition;
-use Mdd\QueryBuilder\Escaper;
-use Mdd\QueryBuilder\Condition;
+use Muffin\Conditions\AbstractCondition;
+use Muffin\Conditions\CompositeCondition;
+use Muffin\Escaper;
+use Muffin\Condition;
 
 abstract class AbstractSet extends AbstractCondition implements CompositeCondition
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions\Sets;
+namespace Muffin\Conditions\Sets;
 
-use Mdd\QueryBuilder\Condition;
+use Muffin\Condition;
 
 class OrSet extends AbstractSet
 {

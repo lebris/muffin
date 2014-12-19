@@ -1,7 +1,7 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Snippets;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Queries\Snippets;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class ValuesTest extends PHPUnit_Framework_TestCase
 {

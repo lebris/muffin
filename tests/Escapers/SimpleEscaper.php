@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Tests\Escapers;
+namespace Muffin\Tests\Escapers;
 
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Escaper;
 
 class SimpleEscaper implements Escaper
 {

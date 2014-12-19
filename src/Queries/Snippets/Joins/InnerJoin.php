@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets\Joins;
+namespace Muffin\Queries\Snippets\Joins;
 
-use Mdd\QueryBuilder\Snippet;
+use Muffin\Snippet;
 
 class InnerJoin extends AbstractJoin implements Snippet
 {

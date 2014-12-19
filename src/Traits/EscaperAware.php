@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Traits;
+namespace Muffin\Traits;
 
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Escaper;
 
 trait EscaperAware
 {

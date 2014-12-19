@@ -1,8 +1,8 @@
 <?php
 
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Conditions;
+use Muffin\Types;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class AndConditionTest extends PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Escapers;
+namespace Muffin\Escapers;
 
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Escaper;
 use Doctrine\DBAL\Driver\Connection;
 
 class DoctrineDbalAdapter implements Escaper

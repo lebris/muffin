@@ -1,10 +1,10 @@
 <?php
 
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Queries\Snippets;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Types;
+use Muffin\Condition;
+use Muffin\Conditions;
+use Muffin\Queries\Snippets;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class WhereTest extends PHPUnit_Framework_TestCase
 {

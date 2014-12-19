@@ -1,7 +1,7 @@
 <?php
 
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Types;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class BooleanTest extends PHPUnit_Framework_TestCase
 {

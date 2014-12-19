@@ -1,7 +1,7 @@
 {
-    "name": "mdd/query-builder",
+    "name": "lebris/muffin",
     "description": "A SQL query builder for PHP5.4+",
-    "type": "project",
+    "type": "library",
     "authors": [{
             "name": "Claude LE BRIS",
             "email": "claude.lebris@gmail.com"
@@ -24,8 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Mdd\\QueryBuilder\\": "src/",
-            "Mdd\\QueryBuilder\\Tests\\": "tests/"
+            "Muffin\\": "src/",
+            "Muffin\\Tests\\": "tests/"
         }
     }
 }

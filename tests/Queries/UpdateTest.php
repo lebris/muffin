@@ -1,10 +1,10 @@
 <?php
 
-use Mdd\QueryBuilder\Queries;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
-use Mdd\QueryBuilder\Queries\Snippets\OrderBy;
+use Muffin\Queries;
+use Muffin\Conditions;
+use Muffin\Types;
+use Muffin\Tests\Escapers\SimpleEscaper;
+use Muffin\Queries\Snippets\OrderBy;
 
 class UpdateTest extends PHPUnit_Framework_TestCase
 {

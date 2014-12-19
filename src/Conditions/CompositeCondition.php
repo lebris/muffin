@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions;
+namespace Muffin\Conditions;
 
-use Mdd\QueryBuilder\Condition;
+use Muffin\Condition;
 
 interface CompositeCondition extends Condition
 {

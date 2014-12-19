@@ -1,10 +1,10 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets\Joins;
+namespace Muffin\Queries\Snippets\Joins;
 
-use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Queries\Snippets\Join;
-use Mdd\QueryBuilder\Queries\Snippets;
+use Muffin\Snippet;
+use Muffin\Queries\Snippets\Join;
+use Muffin\Queries\Snippets;
 
 abstract class AbstractJoin implements Join, Snippet
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Mdd\QueryBuilder\Types;
+use Muffin\Types;
 
 class StringTest extends PHPUnit_Framework_TestCase
 {

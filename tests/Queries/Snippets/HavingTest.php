@@ -1,9 +1,9 @@
 <?php
 
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Queries\Snippets;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Conditions;
+use Muffin\Types;
+use Muffin\Queries\Snippets;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class HavingTest extends PHPUnit_Framework_TestCase
 {

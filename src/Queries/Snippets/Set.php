@@ -1,13 +1,13 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets;
+namespace Muffin\Queries\Snippets;
 
-use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Type;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Traits\EscaperAware;
-use Mdd\QueryBuilder\Traits\TypeGuesser;
+use Muffin\Snippet;
+use Muffin\Type;
+use Muffin\Types;
+use Muffin\Conditions;
+use Muffin\Traits\EscaperAware;
+use Muffin\Traits\TypeGuesser;
 
 class Set implements Snippet
 {

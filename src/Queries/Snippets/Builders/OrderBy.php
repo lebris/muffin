@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets\Builders;
+namespace Muffin\Queries\Snippets\Builders;
 
-use Mdd\QueryBuilder\Queries\Snippets;
+use Muffin\Queries\Snippets;
 
 trait OrderBy
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions;
+namespace Muffin\Conditions;
 
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Escaper;
 
 class NullCondition extends AbstractCondition
 {

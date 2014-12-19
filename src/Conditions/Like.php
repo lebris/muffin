@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions;
+namespace Muffin\Conditions;
 
 class Like extends AbstractComparisonOperatorCondition
 {

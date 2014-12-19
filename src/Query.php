@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder;
+namespace Muffin;
 
 interface Query
 {

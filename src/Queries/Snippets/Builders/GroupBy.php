@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets\Builders;
+namespace Muffin\Queries\Snippets\Builders;
 
 trait GroupBy
 {

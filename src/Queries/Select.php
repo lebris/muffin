@@ -1,13 +1,13 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries;
+namespace Muffin\Queries;
 
-use Mdd\QueryBuilder\Query;
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Traits\EscaperAware;
-use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Queries\Snippets\Builders;
-use Mdd\QueryBuilder\Queries\Snippets\Having;
+use Muffin\Query;
+use Muffin\Condition;
+use Muffin\Traits\EscaperAware;
+use Muffin\Snippet;
+use Muffin\Queries\Snippets\Builders;
+use Muffin\Queries\Snippets\Having;
 
 class Select implements Query
 {

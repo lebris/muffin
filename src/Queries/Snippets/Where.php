@@ -1,10 +1,10 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets;
+namespace Muffin\Queries\Snippets;
 
-use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Traits\EscaperAware;
+use Muffin\Snippet;
+use Muffin\Condition;
+use Muffin\Traits\EscaperAware;
 
 class Where implements Snippet
 {

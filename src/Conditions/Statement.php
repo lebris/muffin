@@ -1,10 +1,10 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions;
+namespace Muffin\Conditions;
 
-use Mdd\QueryBuilder\Escaper;
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Query;
+use Muffin\Escaper;
+use Muffin\Condition;
+use Muffin\Query;
 
 class Statement extends AbstractCondition
 {

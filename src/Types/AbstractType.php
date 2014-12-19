@@ -1,9 +1,9 @@
 <?php
 
-namespace Mdd\QueryBuilder\Types;
+namespace Muffin\Types;
 
-use Mdd\QueryBuilder\Type;
-use Mdd\QueryBuilder\Conditions;
+use Muffin\Type;
+use Muffin\Conditions;
 
 abstract class AbstractType implements Type
 {

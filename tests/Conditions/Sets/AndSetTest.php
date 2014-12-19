@@ -1,10 +1,10 @@
 <?php
 
-use Mdd\QueryBuilder\Conditions\Sets\AndSet;
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Conditions\Sets\AndSet;
+use Muffin\Condition;
+use Muffin\Conditions;
+use Muffin\Types;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class AndSetTest extends PHPUnit_Framework_TestCase
 {

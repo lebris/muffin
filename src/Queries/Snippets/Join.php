@@ -1,6 +1,6 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets;
+namespace Muffin\Queries\Snippets;
 
 interface Join
 {

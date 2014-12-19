@@ -1,9 +1,9 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets\Builders;
+namespace Muffin\Queries\Snippets\Builders;
 
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Condition;
+use Muffin\Escaper;
 
 trait Where
 {

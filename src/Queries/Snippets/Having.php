@@ -1,12 +1,12 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets;
+namespace Muffin\Queries\Snippets;
 
-use Mdd\QueryBuilder\Snippet;
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Traits\EscaperAware;
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Snippet;
+use Muffin\Condition;
+use Muffin\Conditions;
+use Muffin\Traits\EscaperAware;
+use Muffin\Escaper;
 
 class Having implements Snippet
 {

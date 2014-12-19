@@ -1,10 +1,10 @@
 <?php
 
-use Mdd\QueryBuilder\Type;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
-use Mdd\QueryBuilder\Types\Datetime;
+use Muffin\Type;
+use Muffin\Types;
+use Muffin\Conditions;
+use Muffin\Tests\Escapers\SimpleEscaper;
+use Muffin\Types\Datetime;
 
 class GreaterTest extends PHPUnit_Framework_TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-use Mdd\QueryBuilder\Condition;
-use Mdd\QueryBuilder\Conditions;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Conditions\Sets\OrSet;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Condition;
+use Muffin\Conditions;
+use Muffin\Types;
+use Muffin\Conditions\Sets\OrSet;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class OrSetTest extends \PHPUnit_Framework_TestCase
 {

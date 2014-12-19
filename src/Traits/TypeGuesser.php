@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Traits;
+namespace Muffin\Traits;
 
-use Mdd\QueryBuilder\Types;
+use Muffin\Types;
 
 trait TypeGuesser
 {

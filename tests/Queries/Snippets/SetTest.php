@@ -1,8 +1,8 @@
 <?php
 
-use Mdd\QueryBuilder\Queries\Snippets;
-use Mdd\QueryBuilder\Types;
-use Mdd\QueryBuilder\Tests\Escapers\SimpleEscaper;
+use Muffin\Queries\Snippets;
+use Muffin\Types;
+use Muffin\Tests\Escapers\SimpleEscaper;
 
 class SetTest extends PHPUnit_Framework_TestCase
 {

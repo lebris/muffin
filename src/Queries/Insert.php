@@ -1,9 +1,9 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries;
+namespace Muffin\Queries;
 
-use Mdd\QueryBuilder\Query;
-use Mdd\QueryBuilder\Traits\EscaperAware;
+use Muffin\Query;
+use Muffin\Traits\EscaperAware;
 
 class Insert implements Query
 {

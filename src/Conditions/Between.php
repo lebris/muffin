@@ -1,9 +1,9 @@
 <?php
 
-namespace Mdd\QueryBuilder\Conditions;
+namespace Muffin\Conditions;
 
-use Mdd\QueryBuilder\Conditions\AbstractCondition;
-use Mdd\QueryBuilder\Escaper;
+use Muffin\Conditions\AbstractCondition;
+use Muffin\Escaper;
 
 class Between extends AbstractCondition
 {

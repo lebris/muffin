@@ -1,8 +1,8 @@
 <?php
 
-namespace Mdd\QueryBuilder\Queries\Snippets;
+namespace Muffin\Queries\Snippets;
 
-use Mdd\QueryBuilder\Snippet;
+use Muffin\Snippet;
 
 class Limit implements Snippet
 {
