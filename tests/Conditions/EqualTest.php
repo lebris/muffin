@@ -88,6 +88,7 @@ class EqualTest extends PHPUnit_Framework_TestCase
             array('id = pony', new Types\Integer('id'), new Types\String('pony'),),
             array('id = ponyId', new Types\Integer('id'), new Types\Integer('ponyId'),),
             array('creationDate = updateDate', new Types\Datetime('creationDate'), new Types\Datetime('updateDate'),),
+            array('good = evil', new Types\Boolean('good'), new Types\Boolean('evil'),),
         );
     }
 }
