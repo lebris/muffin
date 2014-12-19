@@ -3,6 +3,17 @@ Muffin
 
 A SQL Query Builder for PHP5.4+
 
+Installation
+------------
+Use composer :
+```json
+{
+    "require": {
+            "lebris/muffin" : "~1.0"
+    }
+}
+```
+
 QA
 --
 
