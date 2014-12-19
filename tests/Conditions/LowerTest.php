@@ -49,16 +49,16 @@ class LowerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider providerTestFieldGreaterThanField
+     * @dataProvider providerTestFieldLowerThanField
      */
-    public function testFieldGreaterThanField($expected, $columnLeft, $columnRight)
+    public function testFieldLowerThanField($expected, $columnLeft, $columnRight)
     {
         $condition = new Conditions\Lower($columnLeft, $columnRight);
 
         $this->assertSame($expected, $condition->toString($this->escaper));
     }
 
-    public function providerTestFieldGreaterThanField()
+    public function providerTestFieldLowerThanField()
     {
         return array(
             array('pony < unicorn', new Types\String('pony'), new Types\String('unicorn'),),
