@@ -13,16 +13,16 @@ class QueryBuilder
 
     public function insert($table = null)
     {
-        return (new Queries\Insert($table))->setEscaper($this->escaper);;
+        return (new Queries\Insert($table))->setEscaper($this->escaper);
     }
 
     public function select($columns = null)
     {
-        return (new Queries\Select($columns))->setEscaper($this->escaper);;
+        return (new Queries\Select($columns))->setEscaper($this->escaper);
     }
 
     public function update($table = null, $alias = null)
     {
-        return (new Queries\Update($table, $alias))->setEscaper($this->escaper);;
+        return (new Queries\Update($table, $alias))->setEscaper($this->escaper);
     }
 }
