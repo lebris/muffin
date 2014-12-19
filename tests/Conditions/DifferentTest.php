@@ -40,4 +40,26 @@ class DifferentTest extends PHPUnit_Framework_TestCase
             'empty column name' => array('', new Types\Integer(''), 42),
         );
     }
+
+    /**
+     * @dataProvider providerTestDifferentsField
+     */
+    public function testDifferentsField($expected, $columnLeft, $columnRight)
+    {
+        $condition = new Conditions\Different($columnLeft, $columnRight);
+
+        $this->assertSame($expected, $condition->toString($this->escaper));
+    }
+
+    public function providerTestDifferentsField()
+    {
+        return array(
+            array('pony != unicorn', new Types\String('pony'), new Types\String('unicorn'),),
+            array('pony != id', new Types\String('pony'), new Types\Integer('id'),),
+            array('id != pony', new Types\Integer('id'), new Types\String('pony'),),
+            array('id != ponyId', new Types\Integer('id'), new Types\Integer('ponyId'),),
+            array('creationDate != updateDate', new Types\Datetime('creationDate'), new Types\Datetime('updateDate'),),
+            array('good != evil', new Types\Boolean('good'), new Types\Boolean('evil'),),
+        );
+    }
 }
