@@ -30,22 +30,44 @@ class Select implements Snippet
             throw new \LogicException('No columns defined for SELECT clause');
         }
 
-        return sprintf('SELECT %s', implode(', ', $this->columns));
+        return sprintf('SELECT %s', $this->buildColumnsString());
+    }
+
+    private function buildColumnsString()
+    {
+        $columns = array();
+
+        foreach($this->columns as $column)
+        {
+            if($column instanceof Selectable)
+            {
+                $column = $column->toString();
+            }
+
+            $columns[] = $column;
+        }
+
+        return implode(', ', array_unique($columns));
     }
 
     private function addColumns($columns)
     {
         $columns = array_filter($this->ensureIsArray($columns));
 
+        $this->validateColumns($columns);
+
+        $this->columns = array_merge($this->columns, $columns);
+    }
+
+    private function validateColumns($columns)
+    {
         foreach($columns as $column)
         {
-            if(! is_string($column))
+            if(! is_string($column) && (!$column instanceof Selectable))
             {
                 throw new \InvalidArgumentException('Column name must be a string.');
             }
         }
-
-        $this->columns = array_unique(array_merge($this->columns, $columns));
     }
 
     private function ensureIsArray($select)

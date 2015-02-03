@@ -305,4 +305,20 @@ class SelectTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame("SELECT id FROM poney AS p HAVING (rank > 42) AND (author_id = 12 OR author_id = 666)", $query->toString($this->escaper));
     }
+
+    public function testSelectCount()
+    {
+        $query = (new Queries\Select())->setEscaper($this->escaper);
+        $query
+            ->select(array(
+                new Queries\Snippets\Count(new Queries\Snippets\Distinct('votes')),
+                'id',
+                'name'
+            ))
+            ->from('poney')
+            ->where(new Conditions\Equal(new Types\String('name'), 'burger'))
+        ;
+
+        $this->assertSame("SELECT COUNT(DISTINCT votes), id, name FROM poney WHERE name = 'burger'", $query->toString($this->escaper));
+    }
 }

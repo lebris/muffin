@@ -24,7 +24,7 @@ class Select implements Query
         $from,
         $having;
 
-    public function __construct($columns = null)
+    public function __construct($columns = array())
     {
         $this->select = new Snippets\Select();
         $this->where = new Snippets\Where();
