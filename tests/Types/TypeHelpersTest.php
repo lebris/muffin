@@ -20,6 +20,7 @@ class TypeHelpersTest extends PHPUnit_Framework_TestCase
         $equal = new Conditions\Equal($field, 'poney');
         $different = new Conditions\Different($field, 'poney');
         $like = new Conditions\Like($field, 'poney');
+        $notLike = new Conditions\NotLike($field, 'poney');
         $greater = new Conditions\Greater($field, 'poney');
         $greaterOrEqual = new Conditions\GreaterOrEqual($field, 'poney');
         $lower = new Conditions\Lower($field, 'poney');
@@ -37,6 +38,9 @@ class TypeHelpersTest extends PHPUnit_Framework_TestCase
 
         $conditionViaHelper = $field->like('poney');
         $this->assertEquals($like->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
+
+        $conditionViaHelper = $field->notLike('poney');
+        $this->assertEquals($notLike->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
 
         $conditionViaHelper = $field->greaterThan('poney');
         $this->assertEquals($greater->toString($this->escaper), $conditionViaHelper->toString($this->escaper));

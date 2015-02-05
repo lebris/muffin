@@ -35,6 +35,11 @@ abstract class AbstractType implements Type
         return new Conditions\Like($this, $value);
     }
 
+    public function notLike($value)
+    {
+        return new Conditions\NotLike($this, $value);
+    }
+
     public function greaterThan($value)
     {
         return new Conditions\Greater($this, $value);
