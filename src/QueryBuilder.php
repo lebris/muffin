@@ -25,4 +25,14 @@ class QueryBuilder
     {
         return (new Queries\Update($table, $alias))->setEscaper($this->escaper);
     }
+
+    public function count($columnName, $alias = null)
+    {
+        return (new Queries\Snippets\Count($columnName, $alias));
+    }
+
+    public function distinct($columnName)
+    {
+        return (new Queries\Snippets\Distinct($columnName));
+    }
 }
