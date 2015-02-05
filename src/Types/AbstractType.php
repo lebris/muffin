@@ -75,6 +75,11 @@ abstract class AbstractType implements Type
         return new Conditions\IsNull($this);
     }
 
+    public function isNotNull()
+    {
+        return new Conditions\IsNotNull($this);
+    }
+
     public function notIn($value)
     {
         return new Conditions\NotIn($this, $value);

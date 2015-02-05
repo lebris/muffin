@@ -27,6 +27,7 @@ class TypeHelpersTest extends PHPUnit_Framework_TestCase
         $lowerOrEqual = new Conditions\LowerOrEqual($field, 'poney');
         $between = new Conditions\Between($field, 42, 666);
         $isNull = new Conditions\IsNull($field);
+        $isNotNull = new Conditions\IsNotNull($field);
         $in = new Conditions\In($field, array('poney', 'unicorn'));
         $notIn = new Conditions\NotIn($field, array('poney', 'unicorn'));
 
@@ -59,6 +60,9 @@ class TypeHelpersTest extends PHPUnit_Framework_TestCase
 
         $conditionViaHelper = $field->isNull();
         $this->assertEquals($isNull->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
+
+        $conditionViaHelper = $field->isNotNull();
+        $this->assertEquals($isNotNull->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
 
         $conditionViaHelper = $field->in(array('poney', 'unicorn'));
         $this->assertEquals($in->toString($this->escaper), $conditionViaHelper->toString($this->escaper));
