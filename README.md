@@ -9,7 +9,7 @@ Use composer :
 ```json
 {
     "require": {
-        "lebris/muffin" : "~1.1"
+        "lebris/muffin" : "~1.2"
     }
 }
 ```
